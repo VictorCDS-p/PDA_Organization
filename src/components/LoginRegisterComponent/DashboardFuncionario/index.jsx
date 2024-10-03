@@ -9,7 +9,7 @@ export default function DashboardFuncionario() {
 
   useEffect(() => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
-    const alunosReg = users.filter(user => user.user_type === "aluno");
+    const alunosReg = users.filter(user => user.tipo_usuario === "aluno");
     setAlunos(alunosReg);
   }, []);
 
@@ -33,7 +33,7 @@ export default function DashboardFuncionario() {
     return aluno.status === statusFilter;
   });
 
-  if (!user || user.user_type !== "funcionario") {
+  if (!user || user.tipo_usuario !== "funcionario") {
     return (
       <Container className="mt-5">
         <h2>Você não está autenticado como funcionário.</h2>
