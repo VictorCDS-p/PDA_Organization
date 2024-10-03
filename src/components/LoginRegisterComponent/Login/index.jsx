@@ -4,8 +4,8 @@ import { Form, Button, Container } from "react-bootstrap";
 import { AuthContext } from "../AuthContext"; 
 
 const mockUsers = [
-  { nome: "Funcionário 1", email: "funcionario1@exemplo.com", password: "senha123", tipo_usuario: "funcionario", cpf: "123.456.789-00", status: "ativo" },
-  { nome: "Funcionário 2", email: "funcionario2@exemplo.com", password: "senha123", tipo_usuario: "funcionario", cpf: "987.654.321-00", status: "ativo" }
+  { nome: "Funcionário 1", email: "funcionario1@exemplo.com", password: "senha123", user_type: "funcionario", cpf: "123.456.789-00", status: "ativo" },
+  { nome: "Funcionário 2", email: "funcionario2@exemplo.com", password: "senha123", user_type: "funcionario", cpf: "987.654.321-00", status: "ativo" }
 ];
 
 export default function Login() {
@@ -26,7 +26,7 @@ export default function Login() {
       } else {
         setError("");
         login(user); 
-        navigate(user.tipo_usuario === "aluno" ? "/dashboard-aluno" : "/dashboard-funcionario");
+        navigate(user.user_type === "aluno" ? "/dashboard-aluno" : "/dashboard-funcionario");
       }
     } else {
       const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -38,7 +38,7 @@ export default function Login() {
         } else {
           setError("");
           login(foundUser); 
-          navigate(foundUser.tipo_usuario === "aluno" ? "/dashboard-aluno" : "/dashboard-funcionario");
+          navigate(foundUser.user_type === "aluno" ? "/dashboard-aluno" : "/dashboard-funcionario");
         }
       } else {
         setError("Credenciais inválidas. Tente novamente.");

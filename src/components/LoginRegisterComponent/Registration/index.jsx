@@ -13,7 +13,7 @@ export default function Registration() {
   const handleRegistration = (e) => {
     e.preventDefault();
     
-    const newUser = { nome, email, password, cpf, tipo_usuario: "aluno", status: "pendente" };
+    const newUser = { nome, email, password, cpf, user_type: "aluno", status: "pendente" };
     
     const users = JSON.parse(localStorage.getItem("users")) || [];
     users.push(newUser);
