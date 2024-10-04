@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Home() {
+export default function Home() {
   return (
     <div className="home-page">
       <h1>Bem-vindo ao Sistema de Gerenciamento</h1>
@@ -17,4 +17,3 @@ function Home() {
   );
 }
 
-export default Home;

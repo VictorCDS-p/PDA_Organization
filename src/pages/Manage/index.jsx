@@ -1,8 +1,21 @@
 // src/pages/Manage.js
-import React from 'react';
-// import ApprovalUser from './components/ApprovalUser';
+import React, { useState } from 'react';
+import ApprovalUser from './components/ApprovalUser';
 
-function Manage() {
+export default function Manage() {
+  const [users, setUsers] = useState([
+    { id: 1, name: 'Usuário 1', isActive: true },
+    { id: 2, name: 'Usuário 2', isActive: false },
+  ]);
+
+  const toggleUserActiveStatus = (userId) => {
+    setUsers(prevUsers =>
+      prevUsers.map(user =>
+        user.id === userId ? { ...user, isActive: !user.isActive } : user
+      )
+    );
+  };
+
   return (
     <div className="manage-page">
       <h1>Gerenciar</h1>
@@ -16,10 +29,8 @@ function Manage() {
         - Ferramentas para criar e gerenciar turmas.
         - Ferramentas para criar e gerenciar módulos dentro das turmas.
       </p>
-      {/* <ApprovalUser /> */}
-
+      <ApprovalUser users={users} onToggleActive={toggleUserActiveStatus} />
     </div>
   );
 }
 
-export default Manage;

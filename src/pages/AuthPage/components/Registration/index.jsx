@@ -1,28 +1,44 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Form, Button, Container } from "react-bootstrap";
 
 export default function Registration() {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [cpf, setCpf] = useState("");
+  const [formData, setFormData] = useState({
+    nome: "",
+    email: "",
+    password: "",
+    cpf: "",
+  });
   const [mensagem, setMensagem] = useState("");
   const navigate = useNavigate();
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   const handleRegistration = (e) => {
     e.preventDefault();
-    
-    const newUser = { nome, email, password, cpf, user_type: "aluno", status: "pendente" }; // Alterado aqui
-    
+
+    const newUser = {
+      ...formData,
+      user_type: "aluno",
+      status: "pendente",
+    };
+
     const users = JSON.parse(localStorage.getItem("users")) || [];
     users.push(newUser);
     localStorage.setItem("users", JSON.stringify(users));
-    
+
     setMensagem("Cadastro realizado com sucesso! Aguarde a aprovação.");
-    
+
+
+
     setTimeout(() => {
-      navigate("/auth"); 
+      navigate("/auth");
     }, 3000);
   };
 
@@ -34,8 +50,9 @@ export default function Registration() {
           <Form.Control
             type="text"
             placeholder="Insira seu nome"
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
+            name="nome"
+            value={formData.nome}
+            onChange={handleChange}
             required
           />
         </Form.Group>
@@ -45,8 +62,9 @@ export default function Registration() {
           <Form.Control
             type="email"
             placeholder="Insira seu email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
             required
           />
         </Form.Group>
@@ -56,8 +74,9 @@ export default function Registration() {
           <Form.Control
             type="password"
             placeholder="Insira sua senha"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
             required
           />
         </Form.Group>
@@ -67,15 +86,22 @@ export default function Registration() {
           <Form.Control
             type="text"
             placeholder="Insira seu CPF"
-            value={cpf}
-            onChange={(e) => setCpf(e.target.value)}
+            name="cpf"
+            value={formData.cpf}
+            onChange={handleChange}
             required
           />
         </Form.Group>
 
         {mensagem && <p className="text-success mt-3">{mensagem}</p>}
 
-        <Button variant="primary" type="submit" className="mt-3">Registrar</Button>
+        <Button variant="primary" type="submit" className="mt-3">
+          Registrar
+        </Button>
+
+        <p className="mt-3">
+          Já tem uma conta? <Link to="/auth">Faça login</Link>
+        </p>
       </Form>
     </Container>
   );

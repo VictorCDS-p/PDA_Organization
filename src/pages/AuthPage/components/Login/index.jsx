@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Button, Container } from "react-bootstrap";
-import { AuthContext } from "../../../../components/Context/AuthContext"; 
+import { AuthContext } from "../../../../components/Context/AuthContext";
 
 const mockUsers = [
   { nome: "Funcionário 1", email: "funcionario1@exemplo.com", password: "senha123", user_type: "funcionario", cpf: "123.456.789-00", status: "ativo" },
@@ -25,8 +25,8 @@ export default function Login() {
         setError("Sua conta está pendente de aprovação.");
       } else {
         setError("");
-        login(user); 
-        navigate("/"); 
+        login(user);
+        navigate("/");
       }
     } else {
       const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -35,10 +35,12 @@ export default function Login() {
       if (foundUser) {
         if (foundUser.status === "pendente") {
           setError("Sua conta está pendente de aprovação.");
+        } else if (foundUser.status === "inativo") {
+          setError("Sua conta está inativa. Entre em contato com o suporte.");
         } else {
           setError("");
-          login(foundUser); 
-          navigate("/"); 
+          login(foundUser);
+          navigate("/");
         }
       } else {
         setError("Credenciais inválidas. Tente novamente.");

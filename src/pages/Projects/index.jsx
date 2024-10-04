@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Projects() {
+export default function Projects() {
   return (
     <div className="projects-page">
       <h1>Projetos</h1>
@@ -16,4 +16,3 @@ function Projects() {
   );
 }
 
-export default Projects;

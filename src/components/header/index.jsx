@@ -1,10 +1,16 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthContext';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 
-const Header = () => {
+export default function Header() {
     const { user, logout } = useContext(AuthContext);
+    const navigate = useNavigate(); 
+
+    const handleLogout = () => {
+        logout();
+        navigate("/"); 
+    };
 
     return (
         <Navbar bg="light" expand="lg">
@@ -28,7 +34,7 @@ const Header = () => {
                                         <Nav.Link as={Link} to="/edit-account">Editar Conta</Nav.Link>
                                     </>
                                 )}
-                                <Button variant="link" onClick={logout}>Deslogar</Button>
+                                <Button variant="link" onClick={handleLogout}>Deslogar</Button> 
                             </>
                         ) : (
                             <Nav.Link as={Link} to="/auth">Login</Nav.Link>
@@ -40,4 +46,3 @@ const Header = () => {
     );
 };
 
-export default Header;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function NotFound() {
+export default function NotFound() {
   return (
     <div className="not-found-page">
       <h1>Página Não Encontrada</h1>
@@ -15,4 +15,3 @@ function NotFound() {
   );
 }
 
-export default NotFound;

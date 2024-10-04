@@ -1,6 +1,6 @@
 import React from 'react';
 
-function EditAccount() {
+export default function EditAccount() {
   return (
     <div className="edit-account-page">
       <h1>Editar Conta</h1>
@@ -17,4 +17,3 @@ function EditAccount() {
   );
 }
 
-export default EditAccount;
