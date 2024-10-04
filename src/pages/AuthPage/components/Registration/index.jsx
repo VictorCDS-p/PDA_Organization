@@ -13,7 +13,7 @@ export default function Registration() {
   const handleRegistration = (e) => {
     e.preventDefault();
     
-    const newUser = { nome, email, password, cpf, tipo_usuario: "aluno", status: "pendente" };
+    const newUser = { nome, email, password, cpf, user_type: "aluno", status: "pendente" }; // Alterado aqui
     
     const users = JSON.parse(localStorage.getItem("users")) || [];
     users.push(newUser);
@@ -22,13 +22,12 @@ export default function Registration() {
     setMensagem("Cadastro realizado com sucesso! Aguarde a aprovação.");
     
     setTimeout(() => {
-      navigate("/login");
+      navigate("/auth"); 
     }, 3000);
   };
 
   return (
     <Container className="mt-5">
-      <h2 className="mb-4">Registro</h2>
       <Form onSubmit={handleRegistration}>
         <Form.Group controlId="formNome">
           <Form.Label>Nome</Form.Label>
