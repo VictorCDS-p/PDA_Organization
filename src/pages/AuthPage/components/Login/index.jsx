@@ -4,8 +4,9 @@ import { Form, Button, Container } from "react-bootstrap";
 import { AuthContext } from "../../../../components/Context/AuthContext";
 
 const mockUsers = [
-  { nome: "Funcionário 1", email: "funcionario1@exemplo.com", password: "senha123", user_type: "funcionario", cpf: "123.456.789-00", status: "ativo" },
-  { nome: "Funcionário 2", email: "funcionario2@exemplo.com", password: "senha123", user_type: "funcionario", cpf: "987.654.321-00", status: "ativo" }
+  { id: 1, nome: "Funcionário 1", email: "funcionario1@exemplo.com", password: "senha123", user_type: "employee", cpf: "12345678900", status: "approved", approved_by: null },
+  { id: 2, nome: "Funcionário 2", email: "funcionario2@exemplo.com", password: "senha123", user_type: "employee", cpf: "98765432100", status: "approved", approved_by: null },
+  { id: 3, nome: "Aluno 1", email: "aluno1@exemplo.com", password: "senha123", user_type: "student", cpf: "55566677788", status: "pending", approved_by: null }
 ];
 
 export default function Login() {
@@ -21,11 +22,11 @@ export default function Login() {
     const user = mockUsers.find(u => u.email === email && u.password === password);
 
     if (user) {
-      if (user.status === "pendente") {
+      if (user.status === "pending") {
         setError("Sua conta está pendente de aprovação.");
       } else {
         setError("");
-        login(user);
+        login(user); 
         navigate("/");
       }
     } else {
@@ -33,7 +34,7 @@ export default function Login() {
       const foundUser = users.find(u => u.email === email && u.password === password);
 
       if (foundUser) {
-        if (foundUser.status === "pendente") {
+        if (foundUser.status === "pending") {
           setError("Sua conta está pendente de aprovação.");
         } else if (foundUser.status === "inativo") {
           setError("Sua conta está inativa. Entre em contato com o suporte.");

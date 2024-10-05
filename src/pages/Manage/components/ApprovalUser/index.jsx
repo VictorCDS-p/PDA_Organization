@@ -1,25 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Table, Button } from 'react-bootstrap';
 
-export default function ApprovalUser() {
-    const [users, setUsers] = useState([]);
-
-    useEffect(() => {
-        const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
-        setUsers(storedUsers);
-    }, []);
-
-    const toggleUserStatus = (email) => {
-        const updatedUsers = users.map(user => {
-            if (user.email === email) {
-                return { ...user, status: user.status === "ativo" ? "inativo" : "ativo" };
-            }
-            return user;
-        });
-        setUsers(updatedUsers);
-        localStorage.setItem("users", JSON.stringify(updatedUsers));
-    };
-
+export default function ApprovalUser({ users, onToggleActive }) {
     return (
         <div>
             <h2>Aprovação de Usuários</h2>
@@ -34,14 +16,14 @@ export default function ApprovalUser() {
                 </thead>
                 <tbody>
                     {users.map(user => (
-                        <tr key={user.email}>
-                            <td>{user.nome}</td>
+                        <tr key={user.id}>
+                            <td>{user.name}</td>
                             <td>{user.email}</td>
-                            <td>{user.status}</td>
+                            <td>{user.status === "ativo" ? "Ativo" : "Inativo"}</td>
                             <td>
                                 <Button
                                     variant={user.status === "ativo" ? "danger" : "success"}
-                                    onClick={() => toggleUserStatus(user.email)}
+                                    onClick={() => onToggleActive(user.id)}
                                 >
                                     {user.status === "ativo" ? "Desativar" : "Ativar"}
                                 </Button>

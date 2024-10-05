@@ -22,7 +22,7 @@ export default function Header() {
                         <Nav.Link as={Link} to="/">Sobre</Nav.Link>
                         {user ? (
                             <>
-                                {user.user_type === "funcionario" ? (
+                                {user.user_type === "employee" ? (  // Verificando por "employee"
                                     <>
                                         <Nav.Link as={Link} to="/manage">Gerenciar</Nav.Link>
                                         <Nav.Link as={Link} to="/projects">Projetos</Nav.Link>
@@ -45,4 +45,3 @@ export default function Header() {
         </Navbar>
     );
 };
-

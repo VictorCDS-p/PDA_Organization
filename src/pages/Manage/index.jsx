@@ -1,19 +1,20 @@
-// src/pages/Manage.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ApprovalUser from './components/ApprovalUser';
 
 export default function Manage() {
-  const [users, setUsers] = useState([
-    { id: 1, name: 'Usuário 1', isActive: true },
-    { id: 2, name: 'Usuário 2', isActive: false },
-  ]);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
+    setUsers(storedUsers);
+  }, []);
 
   const toggleUserActiveStatus = (userId) => {
-    setUsers(prevUsers =>
-      prevUsers.map(user =>
-        user.id === userId ? { ...user, isActive: !user.isActive } : user
-      )
+    const updatedUsers = users.map(user =>
+      user.id === userId ? { ...user, status: user.status === "ativo" ? "inativo" : "ativo" } : user
     );
+    setUsers(updatedUsers);
+    localStorage.setItem("users", JSON.stringify(updatedUsers)); 
   };
 
   return (
@@ -33,4 +34,3 @@ export default function Manage() {
     </div>
   );
 }
-

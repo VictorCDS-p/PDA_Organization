@@ -8,6 +8,7 @@ import AuthPage from './pages/AuthPage';
 import EditAccount from './pages/EditAccount';
 import Manage from './pages/Manage';
 import Projects from './pages/Projects';
+import Success from './pages/Success';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -22,6 +23,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/edit-account" element={<EditAccount />} />
           <Route path="/manage" element={<Manage />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/success" element={<Success />} />
         </Routes>
       </Router>
     </AuthContext>
