@@ -8,8 +8,6 @@ export default function NotFound() {
         Desculpe, mas a página que você está procurando não existe. Por favor, verifique o URL 
         ou volte à página inicial.
         <br />
-        <strong>Funcionalidade:</strong>
-        - Um link de retorno à página inicial.
       </p>
     </div>
   );

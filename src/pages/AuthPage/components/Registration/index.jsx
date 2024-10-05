@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Form, Button, Container } from "react-bootstrap";
 
 export default function Registration() {
@@ -133,7 +133,7 @@ export default function Registration() {
           <Form.Label>CPF</Form.Label>
           <Form.Control
             type="text"
-            placeholder="XXX.XXX.XXX-XX"
+            placeholder="Insira o seu CPF"
             name="cpf"
             value={formData.cpf}
             onChange={handleChange}
