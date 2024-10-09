@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
+
+
+section-home {
+    position: relative; 
+  }
+  
+  .texto-sobreposto {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    color: white; 
+    text-align: center;
+    z-index: 10; 
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  p{
+    background-color: #f0e58b;
+    color: black;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+  }
+
+ 
