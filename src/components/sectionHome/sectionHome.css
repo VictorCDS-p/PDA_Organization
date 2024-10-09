@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
 
-
 section-home {
     position: relative; 
   }
@@ -28,8 +27,6 @@ section-home {
 
 
   .image-pda{
-    width: 100vw;
-    height: 100vh;
     margin-top: -54px;
     margin-bottom: 50px;
   }
