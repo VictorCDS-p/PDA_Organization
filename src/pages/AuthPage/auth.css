@@ -1,0 +1,92 @@
+#authPage {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+}
+
+#authCard {
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+#authLogo {
+  max-width: 150px;
+}
+
+#authTitle {
+  font-size: 1.75rem;
+  margin-bottom: 20px;
+}
+
+#toggleButtons {
+  width: 100%;
+}
+
+#toggleButtons button {
+  width: 100%;
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+#toggleButtons button.active {
+  background-color: #4E2050;
+  color: white;
+  border: none;
+}
+
+#toggleButtons button.outline-primary {
+  background-color: transparent;
+  color: #4E2050;
+  border: 2px solid #4E2050;
+}
+
+#toggleButtons button.outline-primary:hover {
+  background-color: #4E2050;
+  color: white;
+}
+
+#toggleButtons button:disabled {
+  background-color: #ddd; 
+  color: #aaa; 
+  border: 2px solid #ddd; 
+}
+
+#LoginStudentContainer,
+#LoginAdminContainer {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+#LoginStudentContainer button,
+#LoginAdminContainer button {
+  width: 100%;
+  border-radius: 20px;
+  margin-top: 40px !important;
+  background-color: #4E2050;
+  color: white;
+  border: none;
+}
+
+#LoginStudentContainer button:hover,
+#LoginAdminContainer button:hover {
+  background-color: #3d1c3f;
+}
+
+.form-check-input:checked {
+  background-color: #3d1c3f !important;
+  border-color: #3d1c3f !important;
+}
+
+.form-check-input {
+  border: 2px solid #ddd !important;
+}
+
+.btn-outline-primary {
+  --bs-btn-color: #3d1c3f !important;
+  --bs-btn-border-color: #3d1c3f !important;
+  }

@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import '../registration.css';
 
 export default function RegistrationAdmin() {
   const [formData, setFormData] = useState({
-    full_name: "",
-    email: "",
-    password: "",
-    date_birthday: "", 
+    FirstName: "",
+    LastName: "",
+    Email: "",
+    Password: "",
+    ConfirmPassword: "",
+    DateBirthday: "",
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -25,8 +28,20 @@ export default function RegistrationAdmin() {
     e.preventDefault();
     setError("");
 
+    if (formData.Password !== formData.ConfirmPassword) {
+      setError("As senhas não correspondem.");
+      return;
+    }
+
+    const fullName = `${formData.FirstName} ${formData.LastName}`;
+
     try {
-      await axios.post("http://localhost:3030/administrator/create", formData);
+      await axios.post("http://localhost:3030/administrator/create", {
+        full_name: fullName,
+        email: formData.Email,
+        password: formData.Password,
+        date_birthday: formData.DateBirthday,
+      });
       navigate("/success");
     } catch (error) {
       setError(error.response?.data?.message || "Erro no registro. Tente novamente.");
@@ -36,48 +51,62 @@ export default function RegistrationAdmin() {
   return (
     <Container className="mt-5">
       <Form onSubmit={handleRegistration}>
-        <Form.Group controlId="formNome">
-          <Form.Label>Nome</Form.Label>
+        <Form.Group className="input-group mb-3">
           <Form.Control
             type="text"
-            placeholder="Insira seu nome"
-            name="full_name"
-            value={formData.full_name}
+            placeholder="Nome"
+            name="FirstName"
+            value={formData.FirstName}
+            onChange={handleChange}
+            required
+          />
+          <Form.Control
+            type="text"
+            placeholder="Sobrenome"
+            name="LastName"
+            value={formData.LastName}
             onChange={handleChange}
             required
           />
         </Form.Group>
 
-        <Form.Group controlId="formEmail" className="mt-3">
+        <Form.Group className="input-group mb-3">
+          <Form.Control
+            type="password"
+            placeholder="Senha"
+            name="Password"
+            value={formData.Password}
+            onChange={handleChange}
+            required
+          />
+          <Form.Control
+            type="password"
+            placeholder="Confirmar Senha"
+            name="ConfirmPassword"
+            value={formData.ConfirmPassword}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+
+        <Form.Group controlId="FormEmail" className="mt-3">
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
             placeholder="Insira seu email"
-            name="email"
-            value={formData.email}
+            name="Email"
+            value={formData.Email}
             onChange={handleChange}
             required
           />
         </Form.Group>
 
-        <Form.Group controlId="formDateBirthday" className="mt-3">
+        <Form.Group controlId="FormDateBirthday" className="mt-3">
           <Form.Label>Data de Nascimento</Form.Label>
           <Form.Control
             type="date"
-            name="date_birthday"
-            value={formData.date_birthday}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-
-        <Form.Group controlId="formPassword" className="mt-3">
-          <Form.Label>Senha</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Insira sua senha"
-            name="password"
-            value={formData.password}
+            name="DateBirthday"
+            value={formData.DateBirthday}
             onChange={handleChange}
             required
           />

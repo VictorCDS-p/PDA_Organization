@@ -1,0 +1,32 @@
+#LoginStudentContainer, #LoginAdminContainer {
+  max-width: 400px; 
+  margin: 0 auto; 
+}
+
+.FormControl {
+  display: flex; 
+  align-items: center; 
+}
+
+.FormControl input {
+  flex: 1; 
+}
+
+.FormControl .input-icon {
+  margin-right: 8px; 
+}
+
+#LoginStudentContainer button, #LoginAdminContainer button {
+  width: 100%;
+  border-width: 2px;
+  margin-top: 40px !important; 
+  border-radius: 20px;
+  background-color: #4E2050;
+  color: white;
+  border: none; 
+}
+
+#LoginStudentContainer button:hover, #LoginAdminContainer button:hover {
+  background-color: #3d1c3f; 
+  cursor: pointer; 
+}
