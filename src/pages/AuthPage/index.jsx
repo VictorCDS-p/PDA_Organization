@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Button, Container, Form, Image, Card } from "react-bootstrap";
 import LoginAdmin from "./components/LoginAdmin";
 import LoginStudent from "./components/LoginStudent";
-import RegistrationStudent from "./components/RegistrationStudent";  
-import RegistrationAdmin from "./components/RegistrationAdmin";   
-import logo from '../../../public/images/logo-pda.png'; 
+import RegistrationStudent from "./components/RegistrationStudent";
+import RegistrationAdmin from "./components/RegistrationAdmin";
+import logo from '../../../public/images/logo-pda.png';
 import './auth.css';
 
 export default function AuthPage() {
-  const [isLogin, setIsLogin] = useState(true); 
-  const [userType, setUserType] = useState("student"); 
+  const [isLogin, setIsLogin] = useState(true);
+  const [userType, setUserType] = useState("student");
 
   const handleUserTypeChange = (e) => {
     setUserType(e.target.value);
@@ -17,7 +17,11 @@ export default function AuthPage() {
 
   return (
     <Container id="authPage" className="d-flex justify-content-center align-items-center">
-      <Card id="authCard" className="p-4">
+      <Card
+        id="authCard"
+        className="p-4"
+        style={{ width: isLogin ? "400px" : "800px" }}
+      >
         <Card.Body className="text-center">
           <Image src={logo} alt="Logo" id="authLogo" className="mb-4" />
           <h2 id="authTitle">{isLogin ? "Login" : "Registro"}</h2>

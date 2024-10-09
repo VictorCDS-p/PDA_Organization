@@ -3,12 +3,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f8f9fa;
 }
 
 #authCard {
   width: 100%;
-  max-width: 400px;
+  /* max-width: 400px; */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   border: 1px solid #ddd;
@@ -90,3 +89,42 @@
   --bs-btn-color: #3d1c3f !important;
   --bs-btn-border-color: #3d1c3f !important;
   }
+
+.btn:disabled {
+  background-color: #ddd !important;
+  color: #aaa !important;
+  border: 2px solid #ddd !important;
+  pointer-events: auto; 
+}
+
+.btn:disabled:hover {
+  background-color: #3d1c3f !important;
+  color: #aaa !important;
+  border: 2px solid #ddd !important;
+}
+
+.btn-outline-primary {
+  background-color: transparent !important;
+  color: #4E2050 !important;
+  border: 2px solid #4E2050 !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: #4E2050 !important;
+  color: white !important;
+}
+
+.btn.active {
+  background-color: #4E2050 !important;
+  color: white !important;
+  border: none !important;
+}
+
+.form-check-input:checked {
+  background-color: #3d1c3f !important;
+  border-color: #3d1c3f !important;
+}
+
+.form-check-input {
+  border: 2px solid #ddd !important;
+}
