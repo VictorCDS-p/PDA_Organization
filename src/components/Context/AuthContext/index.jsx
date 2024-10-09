@@ -1,27 +1,18 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 
 export const AuthContext = createContext();
 
 export default function AuthProvider({ children }) {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || null);
 
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (token) {
-            const userData = JSON.parse(atob(token.split('.')[1])); 
-            setUser(userData);
-        }
-    }, []);
-
-    const login = (token, userType) => {
-        localStorage.setItem("token", token); 
-        const userWithRole = { ...JSON.parse(atob(token.split('.')[1])), userType };
-        setUser(userWithRole);
+    const login = (userData) => {
+        setUser(userData);
+        localStorage.setItem("user", JSON.stringify(userData)); 
     };
 
     const logout = () => {
         setUser(null);
-        localStorage.removeItem("token");
+        localStorage.removeItem("user");
     };
 
     return (
