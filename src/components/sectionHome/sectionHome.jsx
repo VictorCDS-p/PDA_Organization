@@ -6,7 +6,7 @@ import './sectionHome.css'
 const SectionHome = () => {
   return (
     <div className="section-home">
-      <Image 
+      <Image className='image-pda'
         src="images/imagem.png"
         fluid 
       />
