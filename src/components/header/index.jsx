@@ -1,3 +1,4 @@
+// Header.js
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthContext';
@@ -22,17 +23,19 @@ export default function Header() {
                         <Nav.Link as={Link} to="/">Sobre</Nav.Link>
                         {user ? (
                             <>
-                                {user.user_type === "employee" ? (  // Verificando por "employee"
+                                {user.role === "administrator" ? ( 
                                     <>
                                         <Nav.Link as={Link} to="/manage">Gerenciar</Nav.Link>
                                         <Nav.Link as={Link} to="/projects">Projetos</Nav.Link>
                                         <Nav.Link as={Link} to="/edit-account">Editar Conta</Nav.Link>
                                     </>
                                 ) : (
-                                    <>
-                                        <Nav.Link as={Link} to="/projects">Projetos</Nav.Link>
-                                        <Nav.Link as={Link} to="/edit-account">Editar Conta</Nav.Link>
-                                    </>
+                                    user.role === "student" && ( 
+                                        <>
+                                            <Nav.Link as={Link} to="/projects">Projetos</Nav.Link>
+                                            <Nav.Link as={Link} to="/edit-account">Editar Conta</Nav.Link>
+                                        </>
+                                    )
                                 )}
                                 <Button variant="link" onClick={handleLogout}>Deslogar</Button> 
                             </>
@@ -44,4 +47,4 @@ export default function Header() {
             </Container>
         </Navbar>
     );
-};
+}
