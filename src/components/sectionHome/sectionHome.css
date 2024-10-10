@@ -1,8 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
 
-section-home {
-    position: relative; 
-  }
+.section-home {
+  position: relative;
+  width: 100vw; 
+  overflow: hidden; 
+}
+
+.image-pda {
+  width: 100vw; 
+  height: auto;
+  object-fit: cover; 
+}
   
   .texto-sobreposto {
     position: absolute;
