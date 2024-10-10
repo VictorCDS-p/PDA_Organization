@@ -57,7 +57,7 @@
 
 @media (min-width: 769px) {
     .custom-navbar {
-        width: 1440px; 
+        width: 100vw; 
     }
     .logo-image {
         margin-right: 400px; 
