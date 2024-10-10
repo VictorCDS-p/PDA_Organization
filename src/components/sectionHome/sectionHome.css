@@ -10,6 +10,7 @@
   width: 100vw; 
   height: auto;
   object-fit: cover; 
+  margin-top: -203px;
 }
   
   .texto-sobreposto {
