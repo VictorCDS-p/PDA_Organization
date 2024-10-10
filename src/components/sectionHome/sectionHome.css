@@ -1,16 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
 
-.section-home {
-  position: relative;
-  width: 100vw; 
-  overflow: hidden; 
-}
-
-.image-pda {
-  width: 100vw; 
-  height: auto; 
-  object-fit: cover; 
-}
+section-home {
+    position: relative; 
+  }
   
   .texto-sobreposto {
     position: absolute;
@@ -25,17 +17,24 @@
     font-style: normal;
   }
 
-  p{
-    background-color: #f0e58b;
-    color: black;
-    border-radius: 5px;
-    margin: 10px;
-    padding: 10px;
+.texto-sobreposto h1 {
+  font-size: 2.5rem; 
+  margin-bottom: 1rem;
+}
+
+.texto-sobreposto p {
+  background-color: #f0e58b;
+  color: black;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .texto-sobreposto h1 {
+    font-size: 1.8rem; 
   }
 
-
-  .image-pda{
-    margin-top: -54px;
-    margin-bottom: 50px;
+  .texto-sobreposto p {
+    font-size: 0.9rem; 
   }
- 
+}
