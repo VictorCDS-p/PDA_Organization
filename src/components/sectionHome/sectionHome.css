@@ -53,7 +53,7 @@
 
 @media (max-width: 414px) {
   .image-pda {
-    margin-top: 0; 
+    margin-top: -20px; 
   }
 
   .texto-sobreposto {
