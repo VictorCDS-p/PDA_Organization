@@ -33,6 +33,19 @@ export default function RegistrationAdmin() {
       return;
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.Email)) {
+      setError("Email inválido.");
+      return;
+    }
+
+    const today = new Date();
+    const dateOfBirth = new Date(formData.DateBirthday);
+    if (dateOfBirth > today) {
+      setError("A data de nascimento não pode ser no futuro.");
+      return;
+    }
+
     const fullName = `${formData.FirstName} ${formData.LastName}`;
 
     try {
