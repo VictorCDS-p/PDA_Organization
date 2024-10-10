@@ -21,10 +21,28 @@ export default function LoginStudent() {
         password,
       });
 
-      login(response.data.token, "student");
-      navigate("/");
+      const { token, isAccepted } = response.data;
+
+      if (!isAccepted) {
+        setError("Sua conta ainda está pendente de aprovação.");
+      } else {
+        login(token, "student");
+        navigate("/");
+      }
     } catch (error) {
-      setError(error.response?.data?.message || "Erro ao fazer login.");
+      console.log(error.response);
+
+      const errorMessage = error.response?.data?.message || error.response?.data || "Erro ao fazer login. Tente novamente mais tarde.";
+      
+      if (errorMessage === "Estudante não encontrado") {
+        setError("Estudante não encontrado. Verifique seu email.");
+      } else if (errorMessage === "Senha incorreta") {
+        setError("Senha incorreta. Verifique sua senha.");
+      } else if (errorMessage === "Estudante não aceito, tente mais tarde.") {
+        setError("Sua conta ainda está pendente de aprovação.");
+      } else {
+        setError(errorMessage);  
+      }
     }
   };
 

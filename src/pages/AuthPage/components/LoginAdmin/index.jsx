@@ -24,7 +24,10 @@ export default function LoginAdmin() {
       login(response.data.token, "admin");
       navigate("/");
     } catch (error) {
-      setError(error.response?.data?.message || "Erro ao fazer login.");
+      setError(
+        error.response?.data?.message || 
+        "Erro ao fazer login. Verifique suas credenciais."
+      );
     }
   };
 
