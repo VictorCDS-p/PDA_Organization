@@ -2,32 +2,33 @@
 
 .section-home {
   position: relative;
-  width: 100vw; 
-  overflow: hidden; 
+  width: 100vw;
+  overflow: hidden;
 }
 
 .image-pda {
-  width: 100vw; 
+  width: 100%;
   height: auto;
-  object-fit: cover; 
-  margin-top: -203px;
+  object-fit: cover;
+  margin-top: -130px;
 }
-  
-  .texto-sobreposto {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); 
-    color: white; 
-    text-align: center;
-    z-index: 10; 
-    font-family: "Dela Gothic One", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
+
+.texto-sobreposto {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  z-index: 10;
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  padding: 20px; 
+}
 
 .texto-sobreposto h1 {
-  font-size: 2.5rem; 
+  font-size: 2.5rem;
   margin-bottom: 1rem;
 }
 
@@ -38,12 +39,32 @@
   padding: 10px;
 }
 
-@media (max-width: 768px) {
+
+@media (min-width: 601px) and (max-width: 1280px) {
   .texto-sobreposto h1 {
-    font-size: 1.8rem; 
+    font-size: 2rem;
   }
 
   .texto-sobreposto p {
-    font-size: 0.9rem; 
+    font-size: 1rem;
+  }
+}
+
+
+@media (max-width: 414px) {
+  .image-pda {
+    margin-top: 0; 
+  }
+
+  .texto-sobreposto {
+    width: 90%; 
+  }
+
+  .texto-sobreposto h1 {
+    font-size: 1.5rem;
+  }
+
+  .texto-sobreposto p {
+    font-size: 0.8rem;
   }
 }
