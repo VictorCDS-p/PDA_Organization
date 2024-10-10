@@ -2,37 +2,40 @@
 
 .texto{
     font-family: 'Dela Gothic One', sans-serif;
-    font-weight: 400;
     font-style: normal;
     padding: 0 15px; 
 }
 
 .body-section {
-    padding: 80px 0;
+    padding: 135px 0;
     text-align: center; 
-  }
+}
   
-  .body-section p {
-    font-size: 1.2rem;
+.body-section p {
     line-height: 1.8;
-    color: black;
-  }
-  
-  .body-section p span {
+    color: #4a1a4c;
+    font-size: 29px;
+}
+
+.destaque {
     background-color: #f0e58b;
-    color: white;
+    color: #4a1a4c;
     padding: 0.2em 0.5em;
     border-radius: 5px;
-    font-weight: bold;
-  }
-  
-  /* Responsividade para telas menores */
-  @media (max-width: 768px) {
+   
+}
+
+.code-bracket {
+    color: #f0e58b; 
+    font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
     .body-section {
-      padding: 60px 0; /* Reduz o espaçamento em telas menores */
+      padding: 60px 0;
     }
   
     .body-section p {
-      font-size: 1rem; /* Reduz o tamanho da fonte em telas menores */
+      font-size: 1rem; 
     }
-  }
+}

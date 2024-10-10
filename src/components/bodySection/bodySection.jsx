@@ -7,9 +7,9 @@ const BodySection = () => {
     <section className="body-section"> 
       <Container className="texto">
         <p>
-          Uma plataforma para os alunos centralizarem<br />
+          <span className="code-bracket">&lt;/</span> Uma plataforma para os alunos centralizarem<br />
           seus projetos ao longo do curso<br />
-          e terem um  <span> portifolio PDA</span>. 
+          e terem um  portifolio PDA <span className="code-bracket">&gt;</span>
         </p>
       </Container>
     </section>

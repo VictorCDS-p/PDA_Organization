@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
+
+
+
 .custom-navbar {
     background-color: #5a2f5c;
     height: 100px;
@@ -12,6 +16,8 @@
 
 .menu-container {
     background-color: #f0e58b;
+    font-family: "Dela Gothic One", sans-serif;
+    font-size: 12.8px;
     border-radius: 10px;
     padding: 5px 40px;
     display: flex;
