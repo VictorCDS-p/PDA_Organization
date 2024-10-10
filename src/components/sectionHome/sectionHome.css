@@ -1,33 +1,54 @@
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
 
-section-home {
-    position: relative; 
-  }
-  
-  .texto-sobreposto {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); 
-    color: white; 
-    text-align: center;
-    z-index: 10; 
-    font-family: "Dela Gothic One", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+.section-home {
+  position: relative; 
+  width: 100vw;
+  height: 100vh; 
+  overflow: hidden; 
+}
+
+.image-pda {
+  width: 100%;
+  height: 100%; 
+  object-fit: cover;
+  position: absolute;
+  top:0;
+  left:0;
+  z-index: 1;
+}
+
+.texto-sobreposto {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  z-index: 10;
+  font-family: 'Dela Gothic One', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  padding: 0 15px; 
+}
+
+.texto-sobreposto h1 {
+  font-size: 2.5rem; 
+  margin-bottom: 1rem;
+}
+
+.texto-sobreposto p {
+  background-color: #f0e58b;
+  color: black;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .texto-sobreposto h1 {
+    font-size: 1.8rem; 
   }
 
-  p{
-    background-color: #f0e58b;
-    color: black;
-    border-radius: 5px;
-    margin: 10px;
-    padding: 10px;
+  .texto-sobreposto p {
+    font-size: 0.9rem; 
   }
-
-
-  .image-pda{
-    margin-top: -54px;
-    margin-bottom: 50px;
-  }
- 
+}

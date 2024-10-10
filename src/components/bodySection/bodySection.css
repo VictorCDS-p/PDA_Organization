@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
+
+.texto{
+    font-family: 'Dela Gothic One', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    padding: 0 15px; 
+}
+
+.body-section {
+    padding: 80px 0; /* Espaçamento grande acima e abaixo da seção */
+    text-align: center; /* Centraliza o texto */
+  }
+  
+  .body-section p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #333; /* Cor de texto escura para contraste */
+  }
+  
+  .body-section p span {
+    background-color: #f0e58b; /* Fundo amarelo para "portifolio PDA" */
+    color: white;
+    padding: 0.2em 0.5em;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  /* Responsividade para telas menores */
+  @media (max-width: 768px) {
+    .body-section {
+      padding: 60px 0; /* Reduz o espaçamento em telas menores */
+    }
+  
+    .body-section p {
+      font-size: 1rem; /* Reduz o tamanho da fonte em telas menores */
+    }
+  }
