@@ -119,8 +119,7 @@ function StudentProjects() {
                     <img
                       width="50"
                       height="50"
-                      src="https://img.icons8.com/ios/50/add--v1.png"
-                      alt="Adicionar Projeto"
+                      src="https://img.icons8.com/ios/50/plus-math--v1.png" alt="plus-math--v1"
                       onClick={handleShowModal}
                       style={{ cursor: 'pointer' }}
                     />
