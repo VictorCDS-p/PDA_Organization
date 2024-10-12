@@ -22,11 +22,8 @@ function StudentProjects() {
     }
 
     try {
-      const response = await axios.get('http://localhost:3030/project/readAll'); 
-      console.log("Projetos retornados:", response.data);
-
+      const response = await axios.get('http://localhost:3030/project/readAll');
       const filteredProjects = response.data.filter(project => project.student_id === user.id);
-      console.log("Projetos filtrados:", filteredProjects);
       setProjects(filteredProjects);
     } catch (error) {
       console.error("Erro ao buscar projetos:", error);
@@ -118,34 +115,38 @@ function StudentProjects() {
         </Modal.Body>
       </Modal>
 
+      {user && user.id && (
+                    <img
+                      width="50"
+                      height="50"
+                      src="https://img.icons8.com/ios/50/add--v1.png"
+                      alt="Adicionar Projeto"
+                      onClick={handleShowModal}
+                      style={{ cursor: 'pointer' }}
+                    />
+                  )}
+
       <Row xs={1} md={2} lg={3} className="g-4">
         {projects.length > 0 ? (
           projects.map(project => (
             <Col key={project.id}>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <img
-                  width="30"
-                  height="30"
-                  src="https://img.icons8.com/ios/50/add--v1.png"
-                  alt="Adicionar Projeto"
-                  onClick={handleShowModal}
-                  style={{ cursor: 'pointer', marginRight: '10px' }}
-                />
-                <Card>
-                  <Card.Body>
-                    <Card.Title>{project.name}</Card.Title>
-                    <Card.Text>
-                      {project.description}
-                    </Card.Text>
-                    <Card.Text>
-                      <strong>Data:</strong> {new Date(project.date).toLocaleDateString()}
-                    </Card.Text>
-                    <Card.Link href={project.link_github} target="_blank" rel="noopener noreferrer">
-                      Ver no GitHub
-                    </Card.Link>
-                  </Card.Body>
-                </Card>
-              </div>
+              <Card>
+                <Card.Header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <Card.Title>{project.name}</Card.Title>
+
+                </Card.Header>
+                <Card.Body>
+                  <Card.Text>
+                    {project.description}
+                  </Card.Text>
+                  <Card.Text>
+                    <strong>Data:</strong> {new Date(project.date).toLocaleDateString()}
+                  </Card.Text>
+                  <Card.Link href={project.link_github} target="_blank" rel="noopener noreferrer">
+                    Ver no GitHub
+                  </Card.Link>
+                </Card.Body>
+              </Card>
             </Col>
           ))
         ) : (
