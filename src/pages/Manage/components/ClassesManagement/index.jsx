@@ -192,7 +192,6 @@ const ClassesManagement = () => {
         </tbody>
       </Table>
 
-      {/* Modal de Criação de Turma */}
       <Modal show={showClassModal} onHide={handleCloseClassModal}>
         <Modal.Header closeButton>
           <Modal.Title>Criar Turma</Modal.Title>
