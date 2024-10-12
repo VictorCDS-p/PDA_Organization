@@ -1,4 +1,4 @@
-body {
+.auth-background, body {
   background-image: url(images/imagem.png);
   background-size: cover; 
   background-position: center;
@@ -6,7 +6,6 @@ body {
   min-height: 100vh; 
   margin: 0;
 }
-
 
 #authPage {
   min-height: 100vh;
