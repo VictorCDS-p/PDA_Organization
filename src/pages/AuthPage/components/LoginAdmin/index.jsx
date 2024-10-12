@@ -12,24 +12,25 @@ export default function LoginAdmin() {
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+const handleLogin = async (e) => {
+  e.preventDefault();
 
-    try {
-      const response = await axios.post("http://localhost:3030/administrator/login", {
-        email,
-        password,
-      });
+  try {
+    const response = await axios.post("http://localhost:3030/administrator/login", {
+      email,
+      password,
+    });
+    
+    login(response.data.token, "administrator");
+    navigate("/");
+  } catch (error) {
+    setError(
+      error.response?.data?.message || 
+      "Erro ao fazer login. Verifique suas credenciais."
+    );
+  }
+};
 
-      login(response.data.token, "admin");
-      navigate("/");
-    } catch (error) {
-      setError(
-        error.response?.data?.message || 
-        "Erro ao fazer login. Verifique suas credenciais."
-      );
-    }
-  };
 
   return (
     <Container id="LoginAdminContainer" className="mt-5">

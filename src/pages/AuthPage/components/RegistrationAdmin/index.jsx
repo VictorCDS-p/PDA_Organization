@@ -57,7 +57,15 @@ export default function RegistrationAdmin() {
       });
       navigate("/success");
     } catch (error) {
-      setError(error.response?.data?.message || "Erro no registro. Tente novamente.");
+      if (error.response) {
+        if (error.response.status === 409) {
+          setError("O email já está cadastrado. Tente outro.");
+        } else {
+          setError(error.response.data.message || "Erro no registro. Tente novamente.");
+        }
+      } else {
+        setError("Erro na conexão com o servidor. Tente novamente.");
+      }
     }
   };
 

@@ -27,6 +27,7 @@ export default function RegistrationStudent() {
         setClasses(response.data);
       } catch (error) {
         console.error("Erro ao buscar turmas:", error);
+        setError("Não foi possível carregar as turmas.");
       }
     };
 
@@ -36,6 +37,7 @@ export default function RegistrationStudent() {
         setAdministrators(response.data);
       } catch (error) {
         console.error("Erro ao buscar administradores:", error);
+        setError("Não foi possível carregar os administradores.");
       }
     };
 
@@ -74,7 +76,7 @@ export default function RegistrationStudent() {
     }
 
     const fullName = `${formData.FirstName} ${formData.LastName}`;
-    
+
     try {
       await axios.post("http://localhost:3030/student/create", {
         full_name: fullName,
@@ -86,7 +88,11 @@ export default function RegistrationStudent() {
       });
       navigate("/success");
     } catch (error) {
-      setError(error.response?.data?.message || "Erro no registro. Tente novamente.");
+      if (error.response?.status === 409) {
+        setError("O email já está cadastrado. Tente outro.");
+      } else {
+        setError(error.response?.data?.message || "Erro no registro. Tente novamente.");
+      }
     }
   };
 
@@ -192,9 +198,7 @@ export default function RegistrationStudent() {
 
         {error && <p className="text-danger mt-3">{error}</p>}
 
-        <Button variant="primary" type="submit" className="mt-3">
-          Registrar
-        </Button>
+        <Button type="submit" className="mt-3">Registrar</Button>
       </Form>
     </Container>
   );

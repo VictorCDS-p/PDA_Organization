@@ -26,9 +26,10 @@ export default function LoginStudent() {
       if (!isAccepted) {
         setError("Sua conta ainda está pendente de aprovação.");
       } else {
-        login(token, "student");
+        login(token, "student"); 
         navigate("/");
       }
+  
     } catch (error) {
       console.log(error.response);
 
