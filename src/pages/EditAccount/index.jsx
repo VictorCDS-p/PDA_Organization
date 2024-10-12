@@ -16,8 +16,8 @@ export default function AccountEdit() {
   const [showEmailModal, setShowEmailModal] = useState(false);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [newEmail, setNewEmail] = useState(""); 
-  const [feedbackMessage, setFeedbackMessage] = useState(""); // Estado para a mensagem de feedback
-  const [feedbackType, setFeedbackType] = useState(""); // Estado para o tipo de feedback (success ou error)
+  const [feedbackMessage, setFeedbackMessage] = useState(""); 
+  const [feedbackType, setFeedbackType] = useState(""); 
 
   const fetchUserData = async () => {
     try {
