@@ -55,7 +55,7 @@
     }
 }
 
-/* @media (min-width: 769px) {
+@media (min-width: 769px) {
     .custom-navbar {
         width: 1440px; 
     }
@@ -65,4 +65,4 @@
     .menu-container {
         width: 300px; 
     }
-} */
+}

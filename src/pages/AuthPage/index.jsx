@@ -16,7 +16,7 @@ export default function AuthPage() {
   };
 
   return (
-    <Container id="authPage" className="d-flex justify-content-center align-items-center auth-background">
+    <Container id="authPage" className="d-flex justify-content-center align-items-center">
       <Card
         id="authCard"
         className="p-4"
