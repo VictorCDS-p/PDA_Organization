@@ -21,13 +21,13 @@ export default function LoginStudent() {
         password,
       });
 
-      const { token, isAccepted } = response.data;
+      const { token, isAccepted, id } = response.data; 
 
       if (!isAccepted) {
         setError("Sua conta ainda está pendente de aprovação.");
       } else {
-        login(token, "student"); 
-        navigate("/");
+        login(token, "student", id);
+        navigate("/"); 
       }
   
     } catch (error) {
@@ -67,11 +67,11 @@ export default function LoginStudent() {
           />
         </Form.Group>
 
-        <Form.Group controlId="StudentFormPassword" className="mt-3 FormControl">
+        <Form.Group controlId="StudentFormPassword" className="FormControl">
           <img
             width="24"
             height="24"
-            src="https://img.icons8.com/windows/32/password.png"
+            src="https://img.icons8.com/ios/24/password.png"
             alt="password"
             className="input-icon"
           />
@@ -84,11 +84,11 @@ export default function LoginStudent() {
           />
         </Form.Group>
 
-        {error && <p id="StudentLoginError" className="text-danger mt-3">{error}</p>}
-
-        <Button id="StudentLoginButton" variant="primary" type="submit" className="mt-3">
-          Entrar
+        <Button variant="primary" type="submit">
+          Login
         </Button>
+
+        {error && <p className="text-danger mt-2">{error}</p>}
       </Form>
     </Container>
   );

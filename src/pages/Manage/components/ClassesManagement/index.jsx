@@ -256,7 +256,6 @@ const ClassesManagement = () => {
         </Modal.Footer>
       </Modal>
 
-      {/* Modal de Gerenciamento de Módulos */}
       <Modal show={showModuleModal} onHide={handleCloseModuleModal}>
         <Modal.Header closeButton>
           <Modal.Title>Módulos da Turma: {selectedClass?.name || ''}</Modal.Title>
