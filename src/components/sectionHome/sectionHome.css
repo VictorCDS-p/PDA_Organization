@@ -3,68 +3,44 @@
 .section-home {
   position: relative;
   width: 100vw;
-  overflow: hidden;
+  height: 100vh; 
+  overflow: hidden; 
 }
 
 .image-pda {
   width: 100%;
-  height: auto;
-  object-fit: cover;
-  margin-top: -130px;
-}
-
-.texto-sobreposto {
+  height: 100%;
+  object-fit: cover; 
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  text-align: center;
-  z-index: 10;
-  font-family: "Dela Gothic One", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  padding: 20px; 
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
-
-.texto-sobreposto h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.texto-sobreposto p {
-  background-color: #f0e58b;
-  color: black;
-  border-radius: 5px;
-  padding: 10px;
-}
-
-
-@media (min-width: 601px) and (max-width: 1280px) {
-  .texto-sobreposto h1 {
-    font-size: 2rem;
-  }
-
-  .texto-sobreposto p {
-    font-size: 1rem;
-  }
-}
-
-
-@media (max-width: 414px) {
-  .image-pda {
-    margin-top: -20px; 
-  }
-
+  
   .texto-sobreposto {
-    width: 90%; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    color: white; 
+    text-align: center;
+    z-index: 10; 
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
   }
 
-  .texto-sobreposto h1 {
-    font-size: 1.5rem;
+  p{
+    /* background-color: #f0e58b; */
+    color: black;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
   }
 
-  .texto-sobreposto p {
-    font-size: 0.8rem;
+
+  .image-pda{
+    margin-top: -54px;
+    margin-bottom: 50px;
   }
-}
+ 

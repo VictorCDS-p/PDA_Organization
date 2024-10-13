@@ -2,15 +2,15 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthContext';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
-import './header.css'; 
+import './header.css';
 
 export default function Header() {
-    const { user, logout } = useContext(AuthContext);
-    const navigate = useNavigate(); 
+    const { token, userType, logout } = useContext(AuthContext); 
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         logout();
-        navigate("/"); 
+        navigate("/");
     };
 
     return (
@@ -23,9 +23,7 @@ export default function Header() {
                         className="logo-image" 
                     />
                 </Navbar.Brand>
-                
                 <Navbar.Toggle aria-controls="basic-navbar-nav" /> 
-                
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto menu-container">
                         <ul className="menu-items">
@@ -35,9 +33,9 @@ export default function Header() {
                             <li className="menu-item">
                                 <Nav.Link as={Link} to="/sobre" className="nav-link">Sobre</Nav.Link>
                             </li>
-                            {user ? (
+                            {token ? ( 
                                 <>
-                                    {user.user_type === "employee" && (
+                                    {userType === "administrator" && (
                                         <>
                                             <li className="menu-item">
                                                 <Nav.Link as={Link} to="/manage" className="nav-link">Gerenciar</Nav.Link>
@@ -50,7 +48,7 @@ export default function Header() {
                                             </li>
                                         </>
                                     )}
-                                    {user.user_type === "user" && (
+                                    {userType === "student" && ( 
                                         <>
                                             <li className="menu-item">
                                                 <Nav.Link as={Link} to="/projects" className="nav-link">Projetos</Nav.Link>
@@ -75,4 +73,4 @@ export default function Header() {
             </Container>
         </Navbar>
     );
-};
+}
