@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
 
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; 
+}
+
 .section-home {
   position: relative;
   width: 100vw;
@@ -32,7 +38,7 @@
 
   p{
     /* background-color: #f0e58b; */
-    color: black;
+    color: yellow;
     border-radius: 5px;
     margin: 10px;
     padding: 10px;

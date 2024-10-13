@@ -14,7 +14,7 @@ const SectionHome = () => {
       <Container className="texto-sobreposto">
         <h1>O Instituto Programadores do Amanhã</h1>
         <p>
-          nasceu com o objetivo de formar e empregar jovens pretos, pardos e
+          Nasceu com o objetivo de formar e empregar jovens pretos, pardos e
           indígenas no mercado de tecnologia.
         </p>
       </Container>

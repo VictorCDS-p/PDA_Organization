@@ -15,7 +15,7 @@ export default function Header() {
 
     return (
         <Navbar className="custom-navbar" expand="lg">
-            <Container>
+            <Container className="primary-container">
                 <Navbar.Brand as={Link} to="/">
                     <img 
                         src="/images/programadores-do-amanha-logo.png" 
@@ -23,15 +23,12 @@ export default function Header() {
                         className="logo-image" 
                     />
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" /> 
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ml-auto menu-container">
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse className="justify-content-end"> {/* Ajuste aqui */}
+                    <Nav className="menu-container">
                         <ul className="menu-items">
                             <li className="menu-item">
                                 <Nav.Link as={Link} to="/" className="nav-link">Início</Nav.Link>
-                            </li>
-                            <li className="menu-item">
-                                <Nav.Link as={Link} to="/sobre" className="nav-link">Sobre</Nav.Link>
                             </li>
                             {token ? ( 
                                 <>
@@ -64,7 +61,7 @@ export default function Header() {
                                 </>
                             ) : (
                                 <li className="menu-item">
-                                    <Nav.Link as={Link} to="/auth" className="nav-link">Login</Nav.Link>
+                                    <Nav.Link as={Link} to="/auth" className="nav-link item-nav">Login</Nav.Link>
                                 </li>
                             )}
                         </ul>
