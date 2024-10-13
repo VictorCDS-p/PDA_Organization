@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button, Container } from "react-bootstrap";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { createAdministrator } from '../../../../services/administrators.services'; 
 import '../registration.css';
 
 export default function RegistrationAdmin() {
@@ -49,7 +49,7 @@ export default function RegistrationAdmin() {
     const fullName = `${formData.FirstName} ${formData.LastName}`;
 
     try {
-      await axios.post("http://localhost:3030/administrator/create", {
+      await createAdministrator({
         full_name: fullName,
         email: formData.Email,
         password: formData.Password,

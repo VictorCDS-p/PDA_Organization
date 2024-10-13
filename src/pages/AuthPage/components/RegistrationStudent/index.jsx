@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Container } from "react-bootstrap";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { readAdministrators } from '../../../../services/administrators.services'; 
+import { readAllClasses } from '../../../../services/classes.services'; 
+import { createStudent } from '../../../../services/students.services'; 
+
 import '../registration.css';
 
 export default function RegistrationStudent() {
@@ -21,28 +24,21 @@ export default function RegistrationStudent() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchClasses = async () => {
+    const fetchClassesAndAdministrators = async () => {
       try {
-        const response = await axios.get("http://localhost:3030/class/read");
-        setClasses(response.data);
+        const [classResponse, adminResponse] = await Promise.all([
+          readAllClasses(),
+          readAdministrators()
+        ]);
+        setClasses(classResponse);
+        setAdministrators(adminResponse);
       } catch (error) {
-        console.error("Erro ao buscar turmas:", error);
-        setError("Não foi possível carregar as turmas.");
+        console.error("Erro ao buscar dados:", error);
+        setError("Não foi possível carregar as turmas ou administradores.");
       }
     };
 
-    const fetchAdministrators = async () => {
-      try {
-        const response = await axios.get("http://localhost:3030/administrator/read");
-        setAdministrators(response.data);
-      } catch (error) {
-        console.error("Erro ao buscar administradores:", error);
-        setError("Não foi possível carregar os administradores.");
-      }
-    };
-
-    fetchClasses();
-    fetchAdministrators();
+    fetchClassesAndAdministrators();
   }, []);
 
   const handleChange = (e) => {
@@ -78,7 +74,7 @@ export default function RegistrationStudent() {
     const fullName = `${formData.FirstName} ${formData.LastName}`;
 
     try {
-      await axios.post("http://localhost:3030/student/create", {
+      await createStudent({
         full_name: fullName,
         email: formData.Email,
         password: formData.Password,
@@ -162,8 +158,7 @@ export default function RegistrationStudent() {
 
         <Form.Group controlId="FormClass" className="mt-3">
           <Form.Label>Turma</Form.Label>
-          <Form.Control
-            as="select"
+          <Form.Select
             name="ClassId"
             value={formData.ClassId}
             onChange={handleChange}
@@ -175,30 +170,31 @@ export default function RegistrationStudent() {
                 {classItem.name}
               </option>
             ))}
-          </Form.Control>
+          </Form.Select>
         </Form.Group>
 
         <Form.Group controlId="FormAdministrator" className="mt-3">
-          <Form.Label>Professor</Form.Label>
-          <Form.Control
-            as="select"
+          <Form.Label>Administrador</Form.Label>
+          <Form.Select
             name="AdministratorId"
             value={formData.AdministratorId}
             onChange={handleChange}
             required
           >
-            <option value="">Selecione um professor</option>
+            <option value="">Selecione um administrador</option>
             {administrators.map((admin) => (
               <option key={admin.id} value={admin.id}>
                 {admin.full_name}
               </option>
             ))}
-          </Form.Control>
+          </Form.Select>
         </Form.Group>
 
         {error && <p className="text-danger mt-3">{error}</p>}
 
-        <Button type="submit" className="mt-3">Registrar</Button>
+        <Button variant="primary" type="submit" className="mt-3">
+          Registrar
+        </Button>
       </Form>
     </Container>
   );
