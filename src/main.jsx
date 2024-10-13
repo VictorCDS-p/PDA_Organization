@@ -2,7 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router, Routes } from 'react-router-dom';
 import AuthProvider from './components/Context/AuthContext';
-import Header from './components/Header';
+import Header from './components/header';
 import DefaultRoutes from './routes/DefaultRoutes';  
 import AdminRoutes from './routes/AdminRoutes'; 
 import UserRoutes from './routes/UserRoutes';
