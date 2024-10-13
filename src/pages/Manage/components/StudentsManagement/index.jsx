@@ -52,23 +52,6 @@ const StudentsManagement = () => {
     };
 
     const toggleStudentStatus = async () => {
-        if (!selectedStudent) {
-            console.error("Nenhum estudante selecionado.");
-            return;
-        }
-
-        if (!user || !user.id) {
-            console.error("Usuário não autenticado ou ID do usuário não encontrado.");
-            setError("Usuário não autenticado.");
-            return;
-        }
-
-        if (!user.isAdmin) {
-            console.error("Usuário não tem permissão para atualizar estudantes.");
-            setError("Você não tem permissão para realizar essa ação.");
-            handleCloseModal();
-            return;
-        }
 
         try {
             const updatedStatus = !selectedStudent.isAccepted;

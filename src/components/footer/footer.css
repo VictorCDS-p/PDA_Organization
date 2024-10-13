@@ -1,0 +1,31 @@
+.footer {
+    background-color: #5a2f5c; 
+    padding: 35px 0;
+    color: white;
+    width: 100vw;
+  }
+  
+  .footer-text {
+    font-size: 1rem;
+  }
+  
+  .heart {
+    font-size: 1.2em;
+  }
+  
+  .footer-link {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px; }
+
+  
+  .separator {
+    color: white;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .footer-text {
+      font-size: 0.8rem;
+    }
+  }

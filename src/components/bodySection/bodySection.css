@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
+
+.texto{
+    font-family: 'Dela Gothic One', sans-serif;
+    font-style: normal;
+    padding: 0 15px; 
+}
+
+.body-section {
+    padding: 135px 0;
+    text-align: center; 
+}
+  
+.body-section p {
+    line-height: 1.8;
+    color: #4a1a4c;
+    font-size: 29px;
+}
+
+.destaque {
+    background-color: #f0e58b;
+    color: #4a1a4c;
+    padding: 0.2em 0.5em;
+    border-radius: 5px;
+   
+}
+
+.code-bracket {
+    color: #f0e58b; 
+    font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .body-section {
+      padding: 60px 0;
+    }
+  
+    .body-section p {
+      font-size: 1rem; 
+    }
+}
