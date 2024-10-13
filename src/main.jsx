@@ -22,4 +22,3 @@ createRoot(document.getElementById('root')).render(
             </Router>
         </AuthProvider>
     </React.StrictMode>
-);

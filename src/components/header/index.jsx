@@ -23,9 +23,7 @@ export default function Header() {
                         className="logo-image" 
                     />
                 </Navbar.Brand>
-
                 <Navbar.Toggle aria-controls="basic-navbar-nav" /> 
-
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto menu-container">
                         <ul className="menu-items">
