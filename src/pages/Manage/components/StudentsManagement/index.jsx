@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
 import { Table, Button, Container, Modal } from 'react-bootstrap';
 import { AuthContext } from '../../../../components/Context/AuthContext';
+import { readStudents, updateStudent } from '../../../../services/students.services';
+import { readAllClasses } from '../../../../services/classes.services';
 
 const StudentsManagement = () => {
     const { user } = useContext(AuthContext);
@@ -13,8 +14,8 @@ const StudentsManagement = () => {
 
     const fetchStudents = async () => {
         try {
-            const response = await axios.get('http://localhost:3030/student/read');
-            setStudents(Array.isArray(response.data) ? response.data : []);
+            const studentsData = await readStudents();
+            setStudents(Array.isArray(studentsData) ? studentsData : []);
         } catch (err) {
             console.error("Erro ao buscar estudantes", err);
             setError("Erro ao buscar estudantes.");
@@ -23,8 +24,8 @@ const StudentsManagement = () => {
 
     const fetchClasses = async () => {
         try {
-            const response = await axios.get('http://localhost:3030/class/read');
-            const classMap = response.data.reduce((acc, currentClass) => {
+            const classData = await readAllClasses();
+            const classMap = classData.reduce((acc, currentClass) => {
                 acc[currentClass.id] = currentClass.name;
                 return acc;
             }, {});
@@ -51,7 +52,6 @@ const StudentsManagement = () => {
     };
 
     const toggleStudentStatus = async () => {
-
         if (!selectedStudent) {
             console.error("Nenhum estudante selecionado.");
             return;
@@ -63,13 +63,19 @@ const StudentsManagement = () => {
             return;
         }
 
+        if (!user.isAdmin) {
+            console.error("Usuário não tem permissão para atualizar estudantes.");
+            setError("Você não tem permissão para realizar essa ação.");
+            handleCloseModal();
+            return;
+        }
+
         try {
             const updatedStatus = !selectedStudent.isAccepted;
-            const response = await axios.put(`http://localhost:3030/student/update/${selectedStudent.id}`, {
+            await updateStudent(selectedStudent.id, {
                 isAccepted: updatedStatus,
                 administrator_id: user.id 
             });
-
 
             setStudents(prevStudents =>
                 prevStudents.map(student =>
