@@ -6,7 +6,6 @@ import Header from './components/header';
 import DefaultRoutes from './routes/DefaultRoutes';  
 import AdminRoutes from './routes/AdminRoutes'; 
 import UserRoutes from './routes/UserRoutes';
-import Footer from './components/footer/footer';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -20,7 +19,6 @@ createRoot(document.getElementById('root')).render(
                     { ...AdminRoutes }
                     { ...UserRoutes }
                 </Routes>
-                <Footer/>
             </Router>
         </AuthProvider>
     </React.StrictMode>
