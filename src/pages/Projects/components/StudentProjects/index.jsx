@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react'; 
 import { AuthContext } from '../../../../components/Context/AuthContext';
-import axios from 'axios';
 import { Modal, Button, Form, Alert, Card, Row, Col } from 'react-bootstrap';
+import { readAllProjects, createProject } from '../../../../services/projects.services'; 
 
 function StudentProjects() {
   const [projects, setProjects] = useState([]);
@@ -22,8 +22,8 @@ function StudentProjects() {
     }
 
     try {
-      const response = await axios.get('http://localhost:3030/project/readAll');
-      const filteredProjects = response.data.filter(project => project.student_id === user.id);
+      const allProjects = await readAllProjects();
+      const filteredProjects = allProjects.filter(project => project.student_id === user.id);
       setProjects(filteredProjects);
     } catch (error) {
       console.error("Erro ao buscar projetos:", error);
@@ -42,7 +42,7 @@ function StudentProjects() {
     }
 
     try {
-      await axios.post('http://localhost:3030/project/create', { ...projectData, student_id: user.id });
+      await createProject({ ...projectData, student_id: user.id });
       fetchProjects();
       handleCloseModal();
     } catch (error) {
@@ -116,14 +116,14 @@ function StudentProjects() {
       </Modal>
 
       {user && user.id && (
-                    <img
-                      width="50"
-                      height="50"
-                      src="https://img.icons8.com/ios/50/plus-math--v1.png" alt="plus-math--v1"
-                      onClick={handleShowModal}
-                      style={{ cursor: 'pointer' }}
-                    />
-                  )}
+        <img
+          width="50"
+          height="50"
+          src="https://img.icons8.com/ios/50/plus-math--v1.png" alt="Adicionar Projeto"
+          onClick={handleShowModal}
+          style={{ cursor: 'pointer' }}
+        />
+      )}
 
       <Row xs={1} md={2} lg={3} className="g-4">
         {projects.length > 0 ? (
@@ -132,7 +132,6 @@ function StudentProjects() {
               <Card>
                 <Card.Header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <Card.Title>{project.name}</Card.Title>
-
                 </Card.Header>
                 <Card.Body>
                   <Card.Text>

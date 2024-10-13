@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Button, Table, Modal } from 'react-bootstrap';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; 
+import { readAllClasses } from '../../../../services/classes.services'; 
+import { readStudents } from '../../../../services/students.services';
 
-const AdminProjects = ({ adminId }) => {
+const AdminProjects = () => {
     const [classes, setClasses] = useState([]);
     const [students, setStudents] = useState([]);
     const [filteredStudents, setFilteredStudents] = useState([]);
@@ -14,26 +15,23 @@ const AdminProjects = ({ adminId }) => {
     useEffect(() => {
         const fetchClasses = async () => {
             try {
-                const response = await axios.get('http://localhost:3030/class/read'); 
-                setClasses(response.data);
+                const classData = await readAllClasses();
+                setClasses(classData);
             } catch (error) {
                 console.error('Error fetching classes:', error);
             }
         };
 
-        fetchClasses();
-    }, []);
-
-    useEffect(() => {
         const fetchStudents = async () => {
             try {
-                const response = await axios.get('http://localhost:3030/student/read'); 
-                setStudents(response.data);
+                const studentData = await readStudents();
+                setStudents(studentData);
             } catch (error) {
                 console.error('Error fetching students:', error);
             }
         };
 
+        fetchClasses();
         fetchStudents();
     }, []);
 
