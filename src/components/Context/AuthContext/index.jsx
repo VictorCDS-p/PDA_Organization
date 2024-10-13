@@ -35,7 +35,8 @@ const AuthProvider = ({ children }) => {
   }, [user, token, userType]);
 
   const login = (token, userType, id) => {
-    const userData = { id, userType };  
+    const isAdmin = userType === 'administrator';
+    const userData = { id, userType, isAdmin };  
     setUser(userData);
     setToken(token);
     setUserType(userType);

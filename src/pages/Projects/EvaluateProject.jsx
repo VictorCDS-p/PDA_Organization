@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, Button, Spinner, Row, Col } from 'react-bootstrap';
-import axios from 'axios';
+import { readAllProjects, updateProject } from '../../services/projects.services'; 
 
 const EvaluateProject = function () {
     const { studentId } = useParams();
@@ -17,8 +17,8 @@ const EvaluateProject = function () {
         setLoading(true);
         setError('');
         try {
-            const projectsResponse = await axios.get('http://localhost:3030/project/readAll');
-            const filteredProjects = projectsResponse.data.filter(project => project.student_id === studentId);
+            const projectsResponse = await readAllProjects();
+            const filteredProjects = projectsResponse.filter(project => project.student_id === studentId);
             setProjects(filteredProjects);
         } catch (error) {
             setError('Erro ao buscar projetos.');
@@ -49,15 +49,13 @@ const EvaluateProject = function () {
         setFeedback('');
         try {
             await Promise.all(
-                Object.entries(evaluation).map(([projectId, rate]) => {
+                Object.entries(evaluation).map(async ([projectId, rate]) => {
                     if (isNaN(parseInt(rate))) {
                         console.error(`Nota inválida para o projeto ${projectId}:`, rate);
                         return Promise.reject(`Nota inválida para o projeto ${projectId}`);
                     }
 
-                    return axios.put(`http://localhost:3030/project/update/${projectId}`, {
-                        rate: parseInt(rate),
-                    });
+                    await updateProject(projectId, { rate: parseInt(rate) });
                 })
             );
             setFeedback('Avaliações atualizadas com sucesso!');
@@ -71,7 +69,7 @@ const EvaluateProject = function () {
     };
 
     const handleReload = () => {
-        fetchProjects(); 
+        fetchProjects();
     };
 
     if (loading) {

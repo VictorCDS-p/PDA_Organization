@@ -1,7 +1,7 @@
 import api from './api';
 
 export const readAllModules = async () => {
-  const response = await api.get('/module/readAll');
+  const response = await api.get('/module/read');
   return response.data;
 };
 

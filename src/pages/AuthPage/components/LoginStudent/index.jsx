@@ -25,9 +25,8 @@ export default function LoginStudent() {
         navigate("/"); 
       }
     } catch (error) {
-      const errorMessage = error.response?.data?.message || 
-                           error.response?.data || 
-                           "Erro ao fazer login. Tente novamente mais tarde.";
+      const errorMessage = error.response?.data?.message || error.response?.data ||
+       "Erro ao fazer login. Tente novamente mais tarde.";
       
       setError(errorMessage);  
     }

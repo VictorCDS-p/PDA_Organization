@@ -1,7 +1,7 @@
 import api from './api';
 
 export const readAllProjects = async () => {
-  const response = await api.get('/project/readAll');
+  const response = await api.get('/project/read');
   return response.data;
 };
 

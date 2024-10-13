@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Table, Button, Form, Container, Modal } from 'react-bootstrap';
+import {readAllClasses,createClass,deleteClass,} from '../../../../services/classes.services';
+import {readAllModules, createModule, deleteModule,} from '../../../../services/modules.services';
+import { readAdministrators } from '../../../../services/administrators.services';
 
 const ClassesManagement = () => {
   const [classes, setClasses] = useState([]);
@@ -16,8 +18,8 @@ const ClassesManagement = () => {
 
   const fetchClasses = async () => {
     try {
-      const response = await axios.get('http://localhost:3030/class/read');
-      setClasses(response.data);
+      const classesData = await readAllClasses();
+      setClasses(classesData);
     } catch (error) {
       setError("Erro ao buscar turmas.");
     } finally {
@@ -27,8 +29,8 @@ const ClassesManagement = () => {
 
   const fetchModules = async () => {
     try {
-      const response = await axios.get('http://localhost:3030/module/readAll');
-      setModules(response.data);
+      const modulesData = await readAllModules();
+      setModules(modulesData);
     } catch (error) {
       setError("Erro ao buscar módulos.");
     }
@@ -36,8 +38,8 @@ const ClassesManagement = () => {
 
   const fetchAdministrators = async () => {
     try {
-      const response = await axios.get('http://localhost:3030/administrator/read');
-      setAdministrators(response.data);
+      const administratorsData = await readAdministrators();
+      setAdministrators(administratorsData);
     } catch (error) {
       setError("Erro ao buscar administradores.");
     }
@@ -56,9 +58,8 @@ const ClassesManagement = () => {
   const handleCreateClass = async (e) => {
     e.preventDefault();
     setError('');
-
     try {
-      await axios.post('http://localhost:3030/class/create', newClass);
+      await createClass(newClass);
       fetchClasses();
       handleCloseClassModal();
       resetForms();
@@ -69,9 +70,8 @@ const ClassesManagement = () => {
 
   const handleDeleteClass = async (classId) => {
     setError('');
-
     try {
-      await axios.delete(`http://localhost:3030/class/delete/${classId}`);
+      await deleteClass(classId);
       fetchClasses();
     } catch (error) {
       setError("Erro ao deletar turma.");
@@ -81,7 +81,7 @@ const ClassesManagement = () => {
   const handleCreateModule = async (e) => {
     e.preventDefault();
     setError('');
-  
+
     if (selectedClass && selectedClass.id) {
       try {
         const payload = {
@@ -89,7 +89,7 @@ const ClassesManagement = () => {
           class_id: selectedClass.id,
           administrator_id: selectedClass.administrator_id
         };
-        await axios.post('http://localhost:3030/module/create', payload);
+        await createModule(payload);
         fetchModules();
         handleCloseModuleModal();
         resetForms();
@@ -103,9 +103,8 @@ const ClassesManagement = () => {
 
   const handleDeleteModule = async (moduleId) => {
     setError('');
-
     try {
-      await axios.delete(`http://localhost:3030/module/delete/${moduleId}`);
+      await deleteModule(moduleId);
       fetchModules();
     } catch (error) {
       setError("Erro ao deletar módulo.");
@@ -148,7 +147,7 @@ const ClassesManagement = () => {
     <Container className="mt-5">
       <h2>Gerenciar Turmas</h2>
       {error && <p className="text-danger">{error}</p>}
-      
+
       <Button variant="primary" onClick={handleShowClassModal} className="mb-3">
         Criar Turma
       </Button>
@@ -285,12 +284,12 @@ const ClassesManagement = () => {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="3">Nenhum módulo encontrado para esta turma</td>
+                    <td colSpan="3">Nenhum módulo encontrado</td>
                   </tr>
                 )
               ) : (
                 <tr>
-                  <td colSpan="3">Nenhuma turma selecionada</td>
+                  <td colSpan="3">Selecione uma turma para ver os módulos.</td>
                 </tr>
               )}
             </tbody>
@@ -307,16 +306,16 @@ const ClassesManagement = () => {
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label>Descrição</Form.Label>
+              <Form.Label>Descrição do Módulo</Form.Label>
               <Form.Control
-                as="textarea"
+                type="text"
                 name="description"
                 value={newModule.description}
                 onChange={handleModuleInputChange}
                 required
               />
             </Form.Group>
-            <Button type="submit" variant="primary">Criar Módulo</Button>
+            <Button type="submit">Criar Módulo</Button>
           </Form>
         </Modal.Body>
         <Modal.Footer>
