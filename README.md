@@ -26,3 +26,20 @@ DEPLOY
 
 ![Render](https://img.shields.io/badge/Render-%2300bdb8.svg?style=for-the-badge&logo=render&logoColor=white)  ![Vercel](https://img.shields.io/badge/Vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 
+# FUNCIONALIDADES 
+
+   ALUNOS 
+
+[✅] Home Principal: Visão geral do conteúdo da página.
+
+[✅] Login: Por meio do cadastro, os usuários conseguem fazer login em suas contas e acessar sua própria interface. (acesso de aluno e administrador) 
+
+[✅] Gerenciamento de Turmas e Módulos: Funcionalidade CRUD para turmas e módulos.
+
+[✅]Listagem de Alunos: Funcionários visualizam dados completos dos alunos matriculados.
+
+[✅] Criação de Projetos (Alunos): Alunos podem criar e gerenciar seus projetos.
+
+
+
+
