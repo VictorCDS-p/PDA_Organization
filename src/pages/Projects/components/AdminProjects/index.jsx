@@ -64,9 +64,9 @@ const AdminProjects = () => {
                     <Card key={classItem.id} style={{ width: '18rem', margin: '1rem', backgroundColor:'#f0e58b'}}>
                         <Card.Body>
                             <Card.Title id="class-card-title">{classItem.name}</Card.Title>
-                            <p><strong>Professor Responsável:</strong> {classItem.administratorName || 'Desconhecido'}</p>
-                            <p><strong>Data de Início:</strong> {new Date(classItem.date_started).toLocaleDateString() || 'Desconhecida'}</p>
-                            <p><strong>Data de Fim:</strong> {new Date(classItem.date_end).toLocaleDateString() || 'Desconhecida'}</p>
+                            <p className="text"><strong>Professor Responsável:</strong> {classItem.administratorName || 'Desconhecido'}</p>
+                            <p className="text"><strong>Data de Início:</strong> {new Date(classItem.date_started).toLocaleDateString() || 'Desconhecida'}</p>
+                            <p className="text"><strong>Data de Fim:</strong> {new Date(classItem.date_end).toLocaleDateString() || 'Desconhecida'}</p>
                             <Button id="view-students-button" onClick={() => handleViewStudents(classItem.id)}>Ver Alunos</Button>
                         </Card.Body>
                     </Card>

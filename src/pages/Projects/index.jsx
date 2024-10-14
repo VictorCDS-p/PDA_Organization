@@ -11,11 +11,15 @@ const Projects = () => {
         <div className="projects-page"
         style={{
             backgroundImage: "url('images/imagem.png')",
-            backgroundSize: 'cover', 
-            height: '100vh', 
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            minHeight: '100vh', 
             width: '100vw',
             margin: 0,
-            color: 'white'
+            padding: 0,
+            color: 'white',
+            display: 'flex',
+            flexDirection: 'column',
         }}>
             
             {userType === 'administrator' ? <AdminProjects /> : <StudentProjects />}

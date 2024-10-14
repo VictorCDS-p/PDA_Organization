@@ -9,6 +9,11 @@
     margin-left: 20px;
 }
 
+.text {
+    font-weight: 500;
+    font-size: 15px;
+}
+
 .projects-page {
     display: flex;
     flex-direction: column;
@@ -19,10 +24,9 @@
 
 .class-cards {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
     gap: 20px; 
-    padding: 10px;
-    margin: 0;
+    margin-left: 50px;
     max-width: 1200px; 
     margin-top: 40px;
 }
