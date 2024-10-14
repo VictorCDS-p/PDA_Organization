@@ -64,11 +64,11 @@ function StudentProjects() {
   }, [user]);
 
   return (
-  <div className="projects-page">
-    <h1 className="title-projects">Projetos do Estudante</h1>
+  <div className="projects-student-page">
+    <h1 className="title-projects-students">Projetos do Estudante</h1>
 
     <Modal show={showModal} onHide={handleCloseModal} id="background-modal">
-      <Modal.Header closeButton style={{background:'#4E2050'}}>
+      <Modal.Header>
         <Modal.Title style={{color:'white'}}>Adicionar Projeto</Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -129,15 +129,15 @@ function StudentProjects() {
       />
     )}
 
-    <Row xs={1} md={2} lg={3} id="class-cards">
+    <Row xs={1} md={2} lg={3}>
       {projects.length > 0 ? (
         projects.map(project => (
           <Col key={project.id}>
-            <Card style={{background:'#EBDA4C', }}>
-              <Card.Header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background:'#4E2050', color:'white' }}>
+            <Card  id="class-cards-students" style={{background:'#EBDA4C', }}>
+              <Card.Header style={{background:'#4E2050', color:'white' }}>
                 <Card.Title id="class-card-title">{project.name}</Card.Title>
               </Card.Header>
-              <Card.Body className="card-body" style={{background:'#EBDA4C', border:'none',color:'black'}}>
+              <Card.Body className="card-body" style={{background:'#f0e58b', border:'none',color:'black'}}>
                 <Card.Text style={{color:'black', fontSize:'1.25rem'}}>{project.description}</Card.Text>
                 <Card.Text style={{color:'black', fontSize:'1.25rem'}}>
                   <strong>Data:</strong> {new Date(project.date).toLocaleDateString()}

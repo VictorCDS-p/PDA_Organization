@@ -8,7 +8,7 @@
     margin-left: 20px;
 }
 
-.projects-page {
+.projects-student-page {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -16,15 +16,13 @@
     margin-left: 20px;
 }
 
-.class-cards {
+.class-cards-students {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
     gap: 20px; 
-    margin: 0 auto;
-    padding: 10px;
-    max-width: 40rem; 
+    margin-left: 50px;
+    max-width: 1200px; 
     margin-top: 40px;
-
 }
 
 
