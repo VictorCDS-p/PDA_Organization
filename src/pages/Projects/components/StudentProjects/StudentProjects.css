@@ -1,11 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
 
 
-.title-projects {
+#title-projects-students {
     text-align: center;
     margin-top: 30px;
     font-family: "Dela Gothic One", sans-serif;
     margin-left: 20px;
+}
+
+#Button-Menu {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: #F0E58B;
+    border-radius: 100%;
+    width: 3rem;
 }
 
 .projects-student-page {
@@ -16,18 +25,22 @@
     margin-left: 20px;
 }
 
-.class-cards-students {
+#class-cards-students {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
     gap: 20px; 
-    margin-left: 50px;
-    max-width: 1200px; 
+    min-height: 20rem;
+    max-width: 40rem; 
+    max-height: 40rem; 
     margin-top: 40px;
+    margin-right: 2.7rem;
+    background:#F0E58B;
+    margin-bottom: 4rem;
 }
 
 
 
-.card-body {
+#card-body {
     display: flex;
     flex-direction: column;
     gap: 10px;
