@@ -24,7 +24,7 @@ export default function Header() {
                     />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse className="justify-content-end"> {/* Ajuste aqui */}
+                <Navbar.Collapse className="justify-content-end"> 
                     <Nav className="menu-container">
                         <ul className="menu-items">
                             <li className="menu-item">

@@ -1,0 +1,23 @@
+#MiniMenuContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #MiniMenuTitle {
+    margin-bottom: 20px;
+  }
+  
+  #MenuOptionsContainer {
+    display: flex; 
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .FormControl {
+    margin-right: 15px;
+  }
+
+  
+ 
+  
