@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'; 
-import { Card, Button, Table, Modal } from 'react-bootstrap';
+import { Card, Button, Table, Modal, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'; 
 import { readAllClasses } from '../../../../services/classes.services'; 
 import { readStudents } from '../../../../services/students.services';
@@ -12,10 +12,11 @@ const AdminProjects = () => {
     const [filteredStudents, setFilteredStudents] = useState([]);
     const [selectedClass, setSelectedClass] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const [loading, setLoading] = useState(true); // Estado de loading
     const navigate = useNavigate(); 
 
     useEffect(() => {
-        const fetchClasses = async () => {
+        const fetchData = async () => {
             try {
                 const classData = await readAllClasses();
                 const classesWithAdmins = await Promise.all(
@@ -25,22 +26,18 @@ const AdminProjects = () => {
                     })
                 );
                 setClasses(classesWithAdmins);
-            } catch (error) {
-                console.error('Error fetching classes:', error);
-            }
-        };
 
-        const fetchStudents = async () => {
-            try {
                 const studentData = await readStudents();
                 setStudents(studentData);
+
+                setLoading(false); 
             } catch (error) {
-                console.error('Error fetching students:', error);
+                console.error('Error fetching data:', error);
+                setLoading(false); 
             }
         };
 
-        fetchClasses();
-        fetchStudents();
+        fetchData();
     }, []);
 
     const handleViewStudents = (classId) => {
@@ -55,6 +52,16 @@ const AdminProjects = () => {
     const handleEvaluateProject = (studentId) => {
         navigate(`/evaluate-project/${studentId}`); 
     };
+
+    if (loading) {
+        return (
+            <div className="loading-spinner">
+                <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Carregando...</span>
+                </Spinner>
+            </div>
+        );
+    }
 
     return (
         <div>

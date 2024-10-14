@@ -14,7 +14,6 @@ const StudentsManagement = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const studentsPerPage = 3;
 
-    // State for filtering
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedClass, setSelectedClass] = useState('');
     const [isActiveFilter, setIsActiveFilter] = useState('');
