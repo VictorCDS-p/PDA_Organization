@@ -93,7 +93,7 @@ const EvaluateProject = function () {
                 src="https://img.icons8.com/ios/50/recurring-appointment.png"
                 alt="recurring-appointment"
                 onClick={handleReload}
-                style={{ cursor: 'pointer', marginBottom: '1rem' }} 
+                style={{ cursor: 'pointer', marginBottom: '1rem', border:'1rem solid white'}} 
             />
 
             {projects.length > 0 ? (
