@@ -4,6 +4,8 @@ import { AuthContext } from '../../../../components/Context/AuthContext';
 import { readStudents, updateStudent } from '../../../../services/students.services';
 import { readAllClasses } from '../../../../services/classes.services';
 
+
+
 const StudentsManagement = () => {
     const { user } = useContext(AuthContext);
     const [students, setStudents] = useState([]);
@@ -74,8 +76,8 @@ const StudentsManagement = () => {
     };
 
     return (
-        <Container className="mt-5">
-            <h2>Gerenciar Alunos</h2>
+        <Container className="mt-5" style={{background: '#4E2050', borderRadius: '1.5rem', marginBottom:'4rem', width:'80rem',height:'20rem', paddingRight:'3rem', paddingLeft:'3rem', textAlign:'center'}}>
+            <h2 style={{margin:'2rem', color:'white'}}>Gerenciar Alunos</h2>
             {error && <p className="text-danger">{error}</p>}
 
             <Table striped bordered hover className="mt-4">
@@ -112,18 +114,18 @@ const StudentsManagement = () => {
             </Table>
 
             <Modal show={showModal} onHide={handleCloseModal}>
-                <Modal.Header closeButton>
+                <Modal.Header closeButton style={{background: '#4E2050', color:'white'}}>
                     <Modal.Title>{selectedStudent ? (selectedStudent.isAccepted ? 'Desativar' : 'Ativar') : ''} Aluno</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {selectedStudent && `Tem certeza que deseja ${selectedStudent.isAccepted ? 'desativar' : 'ativar'} a conta de ${selectedStudent.full_name}?`}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseModal}>
-                        Cancelar
-                    </Button>
-                    <Button variant="primary" onClick={toggleStudentStatus} disabled={!selectedStudent}>
+                    <Button variant="primary" className='btn btn-warning' onClick={toggleStudentStatus} disabled={!selectedStudent}>
                         Confirmar
+                    </Button>
+                    <Button className='btn btn-dark' variant="secondary" onClick={handleCloseModal}>
+                        Cancelar
                     </Button>
                 </Modal.Footer>
             </Modal>

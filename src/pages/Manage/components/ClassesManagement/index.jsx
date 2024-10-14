@@ -145,7 +145,7 @@ const ClassesManagement = () => {
   }
 
   return (
-    <Container className="mt-5" id="ClassesManagementContainer">
+    <Container className="m-5" style={{background: '#4E2050', borderRadius: '1.5rem', marginBottom:'4rem', width:'80rem', paddingLeft:'3rem', paddingRight:'3rem'}} id="ClassesManagementContainer">
       {error && <p className="text-danger" id="ErrorMessage">{error}</p>}
 
       <h3 id="RegisteredClassesTitle">Turmas Cadastradas</h3>
@@ -162,7 +162,7 @@ const ClassesManagement = () => {
         <tbody>
           {classes.length > 0 ? (
             classes.map((classItem) => (
-              <tr key={classItem.id}>
+              <tr key={classItem.id} id='BodyClass'>
                 <td>{classItem.name}</td>
                 <td>{new Date(classItem.date_started).toLocaleDateString('pt-BR')}</td>
                 <td>{new Date(classItem.date_end).toLocaleDateString('pt-BR')}</td>
@@ -170,10 +170,10 @@ const ClassesManagement = () => {
                   {administrators.find(admin => admin.id === classItem.administrator_id)?.full_name || 'Sem administrador'}
                 </td>
                 <td>
-                  <Button variant="info" onClick={() => handleShowModuleModal(classItem)} id={`ManageButton-${classItem.id}`}>
+                  <Button variant="info" className='btn btn-warning' onClick={() => handleShowModuleModal(classItem)} id={`ManageButton-${classItem.id}`}>
                     Gerenciar
                   </Button>
-                  <Button variant="danger" onClick={() => handleDeleteClass(classItem.id)} id={`DeleteButton-${classItem.id}`}>
+                  <Button variant="danger" className='mt-2 btn btn-danger' onClick={() => handleDeleteClass(classItem.id)} id={`DeleteButton-${classItem.id}`}>
                     Deletar
                   </Button>
                 </td>
@@ -187,12 +187,12 @@ const ClassesManagement = () => {
         </tbody>
       </Table>
 
-      <Button variant="primary" onClick={handleShowClassModal} className="mb-3" id="CreateClassButton">
+      <Button variant="primary" onClick={handleShowClassModal} className="mb-4" id="CreateClassButton">
         Criar Turma
       </Button>
 
       <Modal show={showClassModal} onHide={handleCloseClassModal} id="ClassModal">
-        <Modal.Header closeButton>
+        <Modal.Header closeButton id="CreateClassModalTitle">
           <Modal.Title id="CreateClassModalTitle">Criar Turma</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -248,19 +248,19 @@ const ClassesManagement = () => {
                 ))}
               </Form.Control>
             </Form.Group>
-            <Button type="submit" id="SubmitCreateClassButton">Criar Turma</Button>
+            <Button type="submit" className='btn btn-warning' id="SubmitCreateClassButton">Criar Turma</Button>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseClassModal} id="CloseClassModalButton">
+          <Button variant="secondary" className='btn btn-dark' onClick={handleCloseClassModal} id="CloseClassModalButton">
             Fechar
           </Button>
         </Modal.Footer>
       </Modal>
 
       <Modal show={showModuleModal} onHide={handleCloseModuleModal} id="ModuleModal">
-        <Modal.Header closeButton>
-          <Modal.Title id="ModuleModalTitle">Módulos da Turma: {selectedClass?.name || ''}</Modal.Title>
+        <Modal.Header closeButton id="ModuleModalTitle">
+          <Modal.Title>Módulos da Turma: {selectedClass?.name || ''}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <h5 id="LinkedModulesTitle">Módulos Vinculados</h5>
@@ -317,11 +317,11 @@ const ClassesManagement = () => {
                 id="ModuleDescriptionInput"
               />
             </Form.Group>
-            <Button type="submit" id="SubmitCreateModuleButton">Criar Módulo</Button>
+            <Button type="submit" className='btn btn-warning' id="SubmitCreateModuleButton">Criar Módulo</Button>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModuleModal} id="CloseModuleModalButton">
+          <Button variant="secondary" className='btn btn-dark' onClick={handleCloseModuleModal} id="CloseModuleModalButton">
             Fechar
           </Button>
         </Modal.Footer>

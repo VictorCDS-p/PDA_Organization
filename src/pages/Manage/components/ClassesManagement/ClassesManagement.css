@@ -1,13 +1,61 @@
+*{
+    background-color: balck;
+}
+
+:root {
+    --purple-pda: #4E2050;
+    --yellow-pda: #F0E58B;
+    --white-pda: white;
+}
+
 #RegisteredClassesTitle {
     text-align: center; 
     margin: 20px 0; 
-    margin-bottom: 20px;
+    margin-bottom: 3rem;
+    color: var(--white-pda);
 }
 
 #ClassesManagementContainer {
     text-align: center;
 }
 
+#ManageClassesOption {
+    background-color: white;
+
+}
+
 .Table {
     margin: 0 auto; 
 }
+
+#CreateClassButton {
+    width:20%;
+    height:3.5rem;
+    margin:2rem;
+    background: var(--yellow-pda);
+    color:black;
+    border: none;
+}
+#SubmitCreateClassButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    
+}
+
+#CreateClassModalTitle {
+    background: var(--purple-pda);
+    color: var(--white-pda);
+}
+
+
+#ModuleModalTitle {
+    background: var(--purple-pda);
+    color: var(--white-pda);
+}
+
+#SubmitCreateModuleButton {
+    margin-top: 1rem;
+}
+
