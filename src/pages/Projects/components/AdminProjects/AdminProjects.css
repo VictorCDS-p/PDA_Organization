@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
+
+#root {
+    background-color: #ebda4c;
+    /* background-image: url(https://programadoresdoamanha.org/assets/bgWoman.png); */
+    height: 100vh;
+}
+
+.title-projects, h1 {
+    font-family: "Dela Gothic One", sans-serif;
+    margin-left: 10px;
+}
+
+.projects-page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.class-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px; 
+    /* margin: 0 auto; */
+    padding: 10px;
+    max-width: 1200px; 
+    margin-top: 40px;
+}
+
+
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px;
+}
+
+#view-students-button {
+    font-weight: 700;
+    border: none;
+    background-color: #4e2050;
+}
+
+#view-students-button:hover {
+    background-color: #6a3a6b;
+}
+
+#class-card-title {
+    font-family: "Dela Gothic One", sans-serif;
+}
+
+#background-modal {
+    /* font-family: "Dela Gothic One", sans-serif; */
+    color: #ffffff;
+    background-color: #6a3a6b;
+}
+
+#bnt-modal {
+    border: none;
+    background-color: #ebda4c;
+    color: black;
+    font-weight: 500;
+}
+
+#bnt-modal:hover{
+    background-color: #d2c03f
+}
+
+#subtitle-modal-one, #subtitle-modal-two {
+    background-color:  #ebda4c;
+}
+
+
+#bnt {
+    border: none;
+    background-color:#66bb6a ;
+    color:white;
+    font-weight: 700;
+}
+
+#bnt:hover {
+    background-color: #4caf50;
+}
+
+
