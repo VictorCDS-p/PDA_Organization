@@ -2,8 +2,6 @@
 
 ![image](https://github.com/user-attachments/assets/21117f95-a524-4415-adc9-2832434ad653)
 
+# Sobre o projeto 
 
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# PDA_Organization
+</ O site tem como objetivo ser uma  plataforma para os alunos centralizarem seus projetos ao longo do curso e terem um portifolio PDA, onde tambem é possivel que os professores gerenciem e os modulos, turmas e projetos do alunos > 
