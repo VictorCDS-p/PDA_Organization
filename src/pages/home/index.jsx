@@ -9,7 +9,7 @@ export default function Home() {
    <div>
     <SectionHome/>
     <BodySection/>
+    <Footer/>
    </div>
   );
 }
-
