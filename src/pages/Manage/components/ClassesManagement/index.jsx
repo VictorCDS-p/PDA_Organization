@@ -10,12 +10,16 @@ const ClassesManagement = () => {
   const [newClass, setNewClass] = useState({ name: '', date_started: '', date_end: '', administrator_id: '' });
   const [newModule, setNewModule] = useState({ name: '', description: '' });
   const [error, setError] = useState('');
+  const [dateError, setDateError] = useState('');
   const [loading, setLoading] = useState(true);
   const [showClassModal, setShowClassModal] = useState(false);
   const [showModuleModal, setShowModuleModal] = useState(false);
   const [selectedClass, setSelectedClass] = useState(null);
   const [modules, setModules] = useState([]);
   const [administrators, setAdministrators] = useState([]);
+  const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
+
 
   const fetchClasses = async () => {
     try {
@@ -49,6 +53,7 @@ const ClassesManagement = () => {
   const handleClassInputChange = (e) => {
     const { name, value } = e.target;
     setNewClass(prev => ({ ...prev, [name]: value }));
+    setDateError('');
   };
 
   const handleModuleInputChange = (e) => {
@@ -56,18 +61,36 @@ const ClassesManagement = () => {
     setNewModule(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleShowConfirmDeleteModal = (id) => {
+    setItemToDelete(id);
+    setShowConfirmDeleteModal(true);
+  };
+
+
   const handleCreateClass = async (e) => {
     e.preventDefault();
     setError('');
+    setDateError('');
+
+    const startDate = new Date(newClass.date_started);
+    const endDate = new Date(newClass.date_end);
+
+    if (endDate < startDate) {
+      setDateError("A data de término não pode ser anterior à data de início.");
+      return;
+    }
+
     try {
       await createClass(newClass);
       fetchClasses();
       handleCloseClassModal();
       resetForms();
     } catch (error) {
+      console.error("Erro ao criar turma:", error);
       setError("Erro ao criar turma.");
     }
   };
+
 
   const handleDeleteClass = async (classId) => {
     setError('');
@@ -145,7 +168,7 @@ const ClassesManagement = () => {
   }
 
   return (
-    <Container className="m-5" style={{background: '#4E2050', borderRadius: '1.5rem', marginBottom:'4rem', width:'80rem', paddingLeft:'3rem', paddingRight:'3rem'}} id="ClassesManagementContainer">
+    <Container className="m-5" style={{ background: '#4E2050', borderRadius: '1.5rem', marginBottom: '4rem', width: '80rem', paddingLeft: '3rem', paddingRight: '3rem' }} id="ClassesManagementContainer">
       {error && <p className="text-danger" id="ErrorMessage">{error}</p>}
 
       <h3 id="RegisteredClassesTitle">Turmas Cadastradas</h3>
@@ -173,7 +196,7 @@ const ClassesManagement = () => {
                   <Button variant="info" className='btn btn-warning' onClick={() => handleShowModuleModal(classItem)} id={`ManageButton-${classItem.id}`}>
                     Gerenciar
                   </Button>
-                  <Button variant="danger" className='mt-2 btn btn-danger' onClick={() => handleDeleteClass(classItem.id)} id={`DeleteButton-${classItem.id}`}>
+                  <Button variant="danger" className='mt-2 btn btn-danger' onClick={() => handleShowConfirmDeleteModal(classItem.id)} id={`DeleteButton-${classItem.id}`}>
                     Deletar
                   </Button>
                 </td>
@@ -247,7 +270,9 @@ const ClassesManagement = () => {
                   </option>
                 ))}
               </Form.Control>
+              {dateError && <p className="text-danger">{dateError}</p>}
             </Form.Group>
+
             <Button type="submit" className='btn btn-warning' id="SubmitCreateClassButton">Criar Turma</Button>
           </Form>
         </Modal.Body>
@@ -279,7 +304,7 @@ const ClassesManagement = () => {
                     <td>{moduleItem.name}</td>
                     <td>{moduleItem.description}</td>
                     <td>
-                      <Button variant="danger" onClick={() => handleDeleteModule(moduleItem.id)} id={`DeleteModuleButton-${moduleItem.id}`}>
+                      <Button variant="danger" onClick={() => handleShowConfirmDeleteModal(moduleItem.id)} id={`DeleteModuleButton-${moduleItem.id}`}>
                         Deletar
                       </Button>
                     </td>
@@ -326,6 +351,30 @@ const ClassesManagement = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+      <Modal show={showConfirmDeleteModal} onHide={() => setShowConfirmDeleteModal(false)} id="ConfirmDeleteModal">
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmar Deletar</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Tem certeza de que deseja deletar este item?</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={() => {
+            if (selectedClass) {
+              handleDeleteClass(itemToDelete);
+            } else {
+              handleDeleteModule(itemToDelete);
+            }
+            setShowConfirmDeleteModal(false);
+          }}>
+            Deletar
+          </Button>
+          <Button variant="secondary" onClick={() => setShowConfirmDeleteModal(false)}>
+            Cancelar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
     </Container>
   );
 };

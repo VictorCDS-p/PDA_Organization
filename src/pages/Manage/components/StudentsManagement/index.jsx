@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Table, Button, Container, Modal } from 'react-bootstrap';
+import React, { useState, useEffect, useContext } from 'react'; 
+import { Table, Button, Container, Modal, Pagination, Form } from 'react-bootstrap';
 import { AuthContext } from '../../../../components/Context/AuthContext';
 import { readStudents, updateStudent } from '../../../../services/students.services';
 import { readAllClasses } from '../../../../services/classes.services';
-
-
 
 const StudentsManagement = () => {
     const { user } = useContext(AuthContext);
@@ -13,6 +11,13 @@ const StudentsManagement = () => {
     const [error, setError] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [selectedStudent, setSelectedStudent] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const studentsPerPage = 3;
+
+    // State for filtering
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedClass, setSelectedClass] = useState('');
+    const [isActiveFilter, setIsActiveFilter] = useState('');
 
     const fetchStudents = async () => {
         try {
@@ -54,7 +59,6 @@ const StudentsManagement = () => {
     };
 
     const toggleStudentStatus = async () => {
-
         try {
             const updatedStatus = !selectedStudent.isAccepted;
             await updateStudent(selectedStudent.id, {
@@ -75,46 +79,101 @@ const StudentsManagement = () => {
         }
     };
 
+    const indexOfLastStudent = currentPage * studentsPerPage;
+    const indexOfFirstStudent = indexOfLastStudent - studentsPerPage;
+
+    const filteredStudents = students.filter(student => {
+        const matchesName = student.full_name.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesClass = selectedClass ? student.class_id === selectedClass : true;
+        const matchesStatus = isActiveFilter ? student.isAccepted.toString() === isActiveFilter : true;
+
+        return matchesName && matchesClass && matchesStatus;
+    });
+
+    const currentStudents = filteredStudents.slice(indexOfFirstStudent, indexOfLastStudent);
+    const totalPages = Math.ceil(filteredStudents.length / studentsPerPage);
+
     return (
-        <Container className="mt-5" style={{background: '#4E2050', borderRadius: '1.5rem', marginBottom:'4rem', width:'80rem',height:'20rem', paddingRight:'3rem', paddingLeft:'3rem', textAlign:'center'}}>
-            <h2 style={{margin:'2rem', color:'white'}}>Gerenciar Alunos</h2>
+        <Container className="mt-5" style={{ background: '#4E2050', borderRadius: '1.5rem', marginBottom: '4rem', paddingRight: '3rem', paddingLeft: '3rem', textAlign: 'center' }}>
+            <h2 style={{ margin: '2rem', color: 'white' }}>Gerenciar Alunos</h2>
             {error && <p className="text-danger">{error}</p>}
 
-            <Table striped bordered hover className="mt-4">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Email</th>
-                        <th>Status</th>
-                        <th>Turma</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {students.length > 0 ? (
-                        students.map((student) => (
-                            <tr key={student.id}>
-                                <td>{student.full_name}</td>
-                                <td>{student.email}</td>
-                                <td>{student.isAccepted ? 'Ativo' : 'Inativo'}</td>
-                                <td>{classes[student.class_id] || 'Não vinculado'}</td>
-                                <td>
-                                    <Button onClick={() => handleShowModal(student)}>
-                                        {student.isAccepted ? 'Desativar' : 'Ativar'}
-                                    </Button>
-                                </td>
-                            </tr>
-                        ))
-                    ) : (
+            <div className="d-flex justify-content-between mb-3">
+                <Form.Control
+                    type="text"
+                    placeholder="Pesquisar por nome"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    style={{ width: '30%' }}
+                />
+                <Form.Select
+                    value={selectedClass}
+                    onChange={(e) => setSelectedClass(e.target.value)}
+                    style={{ width: '30%' }}
+                >
+                    <option value="">Todas as turmas</option>
+                    {Object.entries(classes).map(([id, name]) => (
+                        <option key={id} value={id}>{name}</option>
+                    ))}
+                </Form.Select>
+                <Form.Select
+                    value={isActiveFilter}
+                    onChange={(e) => setIsActiveFilter(e.target.value)}
+                    style={{ width: '30%' }}
+                >
+                    <option value="">Todos os status</option>
+                    <option value="true">Ativos</option>
+                    <option value="false">Inativos</option>
+                </Form.Select>
+            </div>
+
+            <div style={{ background: '#4E2050', borderRadius: '1rem', padding: '1rem' }}>
+                <Table striped bordered hover style={{ background: 'white' }} className="mt-4">
+                    <thead>
                         <tr>
-                            <td colSpan="5">Nenhum aluno encontrado</td>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Turma</th>
+                            <th>Ações</th>
                         </tr>
-                    )}
-                </tbody>
-            </Table>
+                    </thead>
+                    <tbody>
+                        {currentStudents.length > 0 ? (
+                            currentStudents.map((student) => (
+                                <tr key={student.id}>
+                                    <td>{student.full_name}</td>
+                                    <td>{student.email}</td>
+                                    <td>{student.isAccepted ? 'Ativo' : 'Inativo'}</td>
+                                    <td>{classes[student.class_id] || 'Não vinculado'}</td>
+                                    <td>
+                                        <Button onClick={() => handleShowModal(student)}>
+                                            {student.isAccepted ? 'Desativar' : 'Ativar'}
+                                        </Button>
+                                    </td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="5">Nenhum aluno encontrado</td>
+                            </tr>
+                        )}
+                    </tbody>
+                </Table>
+            </div>
+
+            <Pagination>
+                <Pagination.Prev onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} disabled={currentPage === 1} />
+                {[...Array(totalPages)].map((_, index) => (
+                    <Pagination.Item key={index} active={index + 1 === currentPage} onClick={() => setCurrentPage(index + 1)}>
+                        {index + 1}
+                    </Pagination.Item>
+                ))}
+                <Pagination.Next onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))} disabled={currentPage === totalPages} />
+            </Pagination>
 
             <Modal show={showModal} onHide={handleCloseModal}>
-                <Modal.Header closeButton style={{background: '#4E2050', color:'white'}}>
+                <Modal.Header closeButton style={{ background: '#4E2050', color: 'white' }}>
                     <Modal.Title>{selectedStudent ? (selectedStudent.isAccepted ? 'Desativar' : 'Ativar') : ''} Aluno</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>

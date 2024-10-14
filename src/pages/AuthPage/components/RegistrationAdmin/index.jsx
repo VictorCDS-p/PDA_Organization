@@ -70,7 +70,7 @@ export default function RegistrationAdmin() {
   };
 
   return (
-    <Container className="mt-5">
+    <Container className="mt-5" id="RegisterAdminContainer">
       <Form onSubmit={handleRegistration}>
         <Form.Group className="input-group mb-3">
           <Form.Control
@@ -135,7 +135,7 @@ export default function RegistrationAdmin() {
 
         {error && <p className="text-danger mt-3">{error}</p>}
 
-        <Button variant="primary" type="submit" className="mt-3">
+        <Button variant="primary" type="submit" className="mt-3" id="AdminLoginButton">
           Registrar
         </Button>
       </Form>

@@ -16,14 +16,20 @@ export default function AuthPage() {
   };
 
   return (
-    <Container id="authPage" className="d-flex justify-content-center align-items-center">
+    <Container id="authPage" className="d-flex justify-content-center align-items-center min-vh-100">
       <Card
         id="authCard"
         className="p-4"
         style={{ width: isLogin ? "400px" : "800px" }}
       >
         <Card.Body className="text-center">
-          <Image src={logo} alt="Logo" id="authLogo" className="mb-4" />
+          <Image 
+            src={logo} 
+            alt="Logo" 
+            id="authLogo" 
+            className="mb-4 mx-auto"
+            style={{ display: 'block', height: 'auto' }} 
+          />
           <h2 id="authTitle">{isLogin ? "Login" : "Registro"}</h2>
 
           <div id="toggleButtons" className="d-flex justify-content-center mb-4">

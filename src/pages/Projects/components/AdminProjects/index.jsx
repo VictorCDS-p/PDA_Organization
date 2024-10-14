@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'; 
 import { Card, Button, Table, Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'; 
 import { readAllClasses } from '../../../../services/classes.services'; 
 import { readStudents } from '../../../../services/students.services';
+import { readAdministratorById } from '../../../../services/administrators.services'; // Importar a função
 import './AdminProjects.css';
-
 
 const AdminProjects = () => {
     const [classes, setClasses] = useState([]);
@@ -18,7 +18,13 @@ const AdminProjects = () => {
         const fetchClasses = async () => {
             try {
                 const classData = await readAllClasses();
-                setClasses(classData);
+                const classesWithAdmins = await Promise.all(
+                    classData.map(async (classItem) => {
+                        const admin = await readAdministratorById(classItem.administrator_id);
+                        return { ...classItem, administratorName: admin.full_name };
+                    })
+                );
+                setClasses(classesWithAdmins);
             } catch (error) {
                 console.error('Error fetching classes:', error);
             }
@@ -58,7 +64,10 @@ const AdminProjects = () => {
                     <Card key={classItem.id} style={{ width: '18rem', margin: '1rem', backgroundColor:'#f0e58b'}}>
                         <Card.Body>
                             <Card.Title id="class-card-title">{classItem.name}</Card.Title>
-                            <Button  id="view-students-button" onClick={() => handleViewStudents(classItem.id)}>Ver Alunos</Button>
+                            <p><strong>Professor Responsável:</strong> {classItem.administratorName || 'Desconhecido'}</p>
+                            <p><strong>Data de Início:</strong> {new Date(classItem.date_started).toLocaleDateString() || 'Desconhecida'}</p>
+                            <p><strong>Data de Fim:</strong> {new Date(classItem.date_end).toLocaleDateString() || 'Desconhecida'}</p>
+                            <Button id="view-students-button" onClick={() => handleViewStudents(classItem.id)}>Ver Alunos</Button>
                         </Card.Body>
                     </Card>
                 ))}
@@ -81,7 +90,7 @@ const AdminProjects = () => {
                                 <tr key={student.id}>
                                     <td>{student.full_name}</td>
                                     <td>
-                                        <Button  id="bnt"
+                                        <Button id="bnt"
                                             variant="primary" 
                                             onClick={() => handleEvaluateProject(student.id)}
                                         >

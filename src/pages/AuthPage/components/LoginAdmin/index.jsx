@@ -31,6 +31,13 @@ export default function LoginAdmin() {
     <Container id="LoginAdminContainer" className="mt-5">
       <Form onSubmit={handleLogin}>
         <Form.Group controlId="AdminFormEmail" className="FormControl">
+        <img
+            width="24"
+            height="24"
+            src="https://img.icons8.com/material-sharp/24/email.png"
+            alt="email"
+            className="input-icon"
+          />
           <Form.Control
             type="email"
             placeholder="Insira seu email de administrador"
@@ -41,6 +48,12 @@ export default function LoginAdmin() {
         </Form.Group>
 
         <Form.Group controlId="AdminFormPassword" className="mt-3 FormControl">
+        <img width="24"
+         height="24" 
+         src="https://img.icons8.com/material-outlined/24/password.png" 
+         alt="password"
+          className="input-icon"
+        />
           <Form.Control
             type="password"
             placeholder="Insira sua senha"

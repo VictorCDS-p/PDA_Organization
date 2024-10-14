@@ -16,7 +16,7 @@
   margin-right: 8px; 
 }
 
-#LoginStudentContainer button, #LoginAdminContainer button {
+#LoginStudentContainer button, #LoginAdminContainer button, #RegisterAdminContainer button, #RegisterStudentContainer button {
   width: 100%;
   border-width: 2px;
   margin-top: 40px !important; 
@@ -26,7 +26,7 @@
   border: none; 
 }
 
-#LoginStudentContainer button:hover, #LoginAdminContainer button:hover {
+#LoginStudentContainer button:hover, #LoginAdminContainer button:hover, #RegisterAdminContainer button:hover, #RegisterStudentContainer button:hover {
   background-color: #3d1c3f; 
   cursor: pointer; 
 }

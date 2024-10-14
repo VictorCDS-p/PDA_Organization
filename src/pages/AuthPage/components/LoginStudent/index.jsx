@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Button, Container } from "react-bootstrap";
 import { AuthContext } from "../../../../components/Context/AuthContext";
-import { loginStudent } from '../../../../services/students.services'; 
+import { loginStudent } from '../../../../services/students.services';
 import '../login.css';
 
 export default function LoginStudent() {
@@ -22,13 +22,13 @@ export default function LoginStudent() {
         setError("Sua conta ainda está pendente de aprovação.");
       } else {
         login(token, "student", id);
-        navigate("/"); 
+        navigate("/");
       }
     } catch (error) {
       const errorMessage = error.response?.data?.message || error.response?.data ||
-       "Erro ao fazer login. Tente novamente mais tarde.";
-      
-      setError(errorMessage);  
+        "Erro ao fazer login. Tente novamente mais tarde.";
+
+      setError(errorMessage);
     }
   };
 
@@ -36,6 +36,13 @@ export default function LoginStudent() {
     <Container id="LoginStudentContainer" className="mt-5">
       <Form onSubmit={handleLogin}>
         <Form.Group controlId="StudentFormEmail" className="FormControl">
+          <img
+            width="24"
+            height="24"
+            src="https://img.icons8.com/material-sharp/24/email.png"
+            alt="email"
+            className="input-icon"
+          />
           <Form.Control
             type="email"
             placeholder="Insira seu email de estudante"
@@ -46,6 +53,12 @@ export default function LoginStudent() {
         </Form.Group>
 
         <Form.Group controlId="StudentFormPassword" className="mt-3 FormControl">
+          <img width="24"
+            height="24"
+            src="https://img.icons8.com/material-outlined/24/password.png"
+            alt="password"
+            className="input-icon"
+          />
           <Form.Control
             type="password"
             placeholder="Insira sua senha"

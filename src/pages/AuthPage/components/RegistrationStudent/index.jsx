@@ -6,6 +6,7 @@ import { readAllClasses } from '../../../../services/classes.services';
 import { createStudent } from '../../../../services/students.services'; 
 
 import '../registration.css';
+import '../login.css'
 
 export default function RegistrationStudent() {
   const [formData, setFormData] = useState({
@@ -93,7 +94,7 @@ export default function RegistrationStudent() {
   };
 
   return (
-    <Container className="mt-5">
+    <Container className="mt-5" id="RegisterStudentContainer">
       <Form onSubmit={handleRegistration}>
         <Form.Group className="input-group mb-3">
           <Form.Control
@@ -192,7 +193,7 @@ export default function RegistrationStudent() {
 
         {error && <p className="text-danger mt-3">{error}</p>}
 
-        <Button variant="primary" type="submit" className="mt-3">
+        <Button variant="primary" type="submit" className="mt-3" id="AdminLoginButton">
           Registrar
         </Button>
       </Form>
