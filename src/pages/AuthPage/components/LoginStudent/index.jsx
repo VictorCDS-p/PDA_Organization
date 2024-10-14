@@ -45,7 +45,7 @@ export default function LoginStudent() {
           />
         </Form.Group>
 
-        <Form.Group controlId="StudentFormPassword" className="FormControl">
+        <Form.Group controlId="StudentFormPassword" className="mt-3 FormControl">
           <Form.Control
             type="password"
             placeholder="Insira sua senha"
