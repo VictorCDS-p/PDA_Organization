@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Container, Button } from "react-bootstrap";
 
-export default function Success() {
+export default function SuccessStudent() {
   return (
     <Container className="mt-5 text-center">
       <h2>Registro bem-sucedido!</h2>

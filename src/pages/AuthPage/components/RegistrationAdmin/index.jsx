@@ -55,7 +55,7 @@ export default function RegistrationAdmin() {
         password: formData.Password,
         date_birthday: formData.DateBirthday,
       });
-      navigate("/success");
+      navigate("/succesadmin");
     } catch (error) {
       if (error.response) {
         if (error.response.status === 409) {

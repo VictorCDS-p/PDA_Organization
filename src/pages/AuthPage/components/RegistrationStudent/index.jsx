@@ -83,7 +83,7 @@ export default function RegistrationStudent() {
         administrator_id: formData.AdministratorId,
         class_id: formData.ClassId,
       });
-      navigate("/success");
+      navigate("/succestudent");
     } catch (error) {
       if (error.response?.status === 409) {
         setError("O email já está cadastrado. Tente outro.");
