@@ -1,22 +1,22 @@
 
   
   .input-group {
-    margin-bottom: 15px; /* Espaço entre os grupos de input */
+    margin-bottom: 15px; 
   }
   
   .input-group .form-control {
-    margin-right: 10px; /* Espaço entre inputs lado a lado */
+    margin-right: 10px; 
   }
   
   .mt-3 {
-    margin-top: 1rem !important; /* Espaço superior consistente */
+    margin-top: 1rem !important;
   }
   
   .text-danger {
-    margin-top: 10px; /* Espaço superior para mensagens de erro */
+    margin-top: 10px; 
   }
   
   button {
-    width: 100%; /* Botão ocupa toda a largura do card */
+    width: 100%; 
   }
   

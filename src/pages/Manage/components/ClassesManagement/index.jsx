@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button, Form, Container, Modal } from 'react-bootstrap';
-import {readAllClasses,createClass,deleteClass,} from '../../../../services/classes.services';
-import {readAllModules, createModule, deleteModule,} from '../../../../services/modules.services';
+import { readAllClasses, createClass, deleteClass } from '../../../../services/classes.services';
+import { readAllModules, createModule, deleteModule } from '../../../../services/modules.services';
 import { readAdministrators } from '../../../../services/administrators.services';
+import "./ClassesManagement.css"
 
 const ClassesManagement = () => {
   const [classes, setClasses] = useState([]);
@@ -144,23 +145,18 @@ const ClassesManagement = () => {
   }
 
   return (
-    <Container className="mt-5">
-      <h2>Gerenciar Turmas</h2>
-      {error && <p className="text-danger">{error}</p>}
+    <Container className="mt-5" id="ClassesManagementContainer">
+      {error && <p className="text-danger" id="ErrorMessage">{error}</p>}
 
-      <Button variant="primary" onClick={handleShowClassModal} className="mb-3">
-        Criar Turma
-      </Button>
-
-      <h3>Turmas Cadastradas</h3>
-      <Table striped bordered hover>
+      <h3 id="RegisteredClassesTitle">Turmas Cadastradas</h3>
+      <Table striped bordered hover id="ClassesTable">
         <thead>
           <tr>
-            <th>Nome</th>
-            <th>Data de Início</th>
-            <th>Data de Término</th>
-            <th>Administrador</th>
-            <th>Ações</th>
+            <th id="ClassNameHeader">Nome</th>
+            <th id="StartDateHeader">Data de Início</th>
+            <th id="EndDateHeader">Data de Término</th>
+            <th id="AdministratorHeader">Administrador</th>
+            <th id="ActionsHeader">Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -174,10 +170,10 @@ const ClassesManagement = () => {
                   {administrators.find(admin => admin.id === classItem.administrator_id)?.full_name || 'Sem administrador'}
                 </td>
                 <td>
-                  <Button variant="info" onClick={() => handleShowModuleModal(classItem)}>
+                  <Button variant="info" onClick={() => handleShowModuleModal(classItem)} id={`ManageButton-${classItem.id}`}>
                     Gerenciar
                   </Button>
-                  <Button variant="danger" onClick={() => handleDeleteClass(classItem.id)}>
+                  <Button variant="danger" onClick={() => handleDeleteClass(classItem.id)} id={`DeleteButton-${classItem.id}`}>
                     Deletar
                   </Button>
                 </td>
@@ -191,50 +187,58 @@ const ClassesManagement = () => {
         </tbody>
       </Table>
 
-      <Modal show={showClassModal} onHide={handleCloseClassModal}>
+      <Button variant="primary" onClick={handleShowClassModal} className="mb-3" id="CreateClassButton">
+        Criar Turma
+      </Button>
+
+      <Modal show={showClassModal} onHide={handleCloseClassModal} id="ClassModal">
         <Modal.Header closeButton>
-          <Modal.Title>Criar Turma</Modal.Title>
+          <Modal.Title id="CreateClassModalTitle">Criar Turma</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={handleCreateClass}>
+          <Form onSubmit={handleCreateClass} id="CreateClassForm">
             <Form.Group>
-              <Form.Label>Nome da Turma</Form.Label>
+              <Form.Label id="ClassNameLabel">Nome da Turma</Form.Label>
               <Form.Control
                 type="text"
                 name="name"
                 value={newClass.name}
                 onChange={handleClassInputChange}
                 required
+                id="ClassNameInput"
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label>Data de Início</Form.Label>
+              <Form.Label id="StartDateLabel">Data de Início</Form.Label>
               <Form.Control
                 type="date"
                 name="date_started"
                 value={newClass.date_started}
                 onChange={handleClassInputChange}
                 required
+                id="StartDateInput"
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label>Data de Término</Form.Label>
+              <Form.Label id="EndDateLabel">Data de Término</Form.Label>
               <Form.Control
                 type="date"
                 name="date_end"
                 value={newClass.date_end}
                 onChange={handleClassInputChange}
                 required
+                id="EndDateInput"
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label>Administrador</Form.Label>
+              <Form.Label id="AdministratorLabel">Administrador</Form.Label>
               <Form.Control
                 as="select"
                 name="administrator_id"
                 value={newClass.administrator_id}
                 onChange={handleClassInputChange}
                 required
+                id="AdministratorSelect"
               >
                 <option value="">Selecione um administrador</option>
                 {administrators.map((admin) => (
@@ -244,82 +248,80 @@ const ClassesManagement = () => {
                 ))}
               </Form.Control>
             </Form.Group>
-            <Button type="submit">Criar Turma</Button>
+            <Button type="submit" id="SubmitCreateClassButton">Criar Turma</Button>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseClassModal}>
+          <Button variant="secondary" onClick={handleCloseClassModal} id="CloseClassModalButton">
             Fechar
           </Button>
         </Modal.Footer>
       </Modal>
 
-      <Modal show={showModuleModal} onHide={handleCloseModuleModal}>
+      <Modal show={showModuleModal} onHide={handleCloseModuleModal} id="ModuleModal">
         <Modal.Header closeButton>
-          <Modal.Title>Módulos da Turma: {selectedClass?.name || ''}</Modal.Title>
+          <Modal.Title id="ModuleModalTitle">Módulos da Turma: {selectedClass?.name || ''}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h5>Módulos Vinculados</h5>
-          <Table striped bordered hover>
+          <h5 id="LinkedModulesTitle">Módulos Vinculados</h5>
+          <Table striped bordered hover id="ModulesTable">
             <thead>
               <tr>
-                <th>Nome</th>
-                <th>Descrição</th>
-                <th>Ações</th>
+                <th id="ModuleNameHeader">Nome do Módulo</th>
+                <th id="ModuleDescriptionHeader">Descrição</th>
+                <th id="ActionsHeader">Ações</th>
               </tr>
             </thead>
             <tbody>
-              {selectedClass ? (
-                modules.filter(module => module.class_id === selectedClass.id).length > 0 ? (
-                  modules.filter(module => module.class_id === selectedClass.id).map((moduleItem) => (
-                    <tr key={moduleItem.id}>
-                      <td>{moduleItem.name}</td>
-                      <td>{moduleItem.description}</td>
-                      <td>
-                        <Button variant="danger" onClick={() => handleDeleteModule(moduleItem.id)}>
-                          Deletar
-                        </Button>
-                      </td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan="3">Nenhum módulo encontrado</td>
+              {modules.length > 0 ? (
+                modules.map((moduleItem) => (
+                  <tr key={moduleItem.id}>
+                    <td>{moduleItem.name}</td>
+                    <td>{moduleItem.description}</td>
+                    <td>
+                      <Button variant="danger" onClick={() => handleDeleteModule(moduleItem.id)} id={`DeleteModuleButton-${moduleItem.id}`}>
+                        Deletar
+                      </Button>
+                    </td>
                   </tr>
-                )
+                ))
               ) : (
                 <tr>
-                  <td colSpan="3">Selecione uma turma para ver os módulos.</td>
+                  <td colSpan="3">Nenhum módulo encontrado</td>
                 </tr>
               )}
             </tbody>
           </Table>
-          <Form onSubmit={handleCreateModule}>
+
+          <Form onSubmit={handleCreateModule} id="CreateModuleForm">
             <Form.Group>
-              <Form.Label>Nome do Módulo</Form.Label>
+              <Form.Label id="ModuleNameLabel">Nome do Módulo</Form.Label>
               <Form.Control
                 type="text"
                 name="name"
                 value={newModule.name}
                 onChange={handleModuleInputChange}
                 required
+                id="ModuleNameInput"
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label>Descrição do Módulo</Form.Label>
+              <Form.Label id="ModuleDescriptionLabel">Descrição</Form.Label>
               <Form.Control
-                type="text"
+                as="textarea"
+                rows={3}
                 name="description"
                 value={newModule.description}
                 onChange={handleModuleInputChange}
                 required
+                id="ModuleDescriptionInput"
               />
             </Form.Group>
-            <Button type="submit">Criar Módulo</Button>
+            <Button type="submit" id="SubmitCreateModuleButton">Criar Módulo</Button>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModuleModal}>
+          <Button variant="secondary" onClick={handleCloseModuleModal} id="CloseModuleModalButton">
             Fechar
           </Button>
         </Modal.Footer>
