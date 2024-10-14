@@ -20,8 +20,9 @@
     display: flex;
     align-items: center;
     justify-content: flex-end; 
-    background-color: #EDDC11;
+    background-color: #f0e58b;
     border-radius: 10px;
+    padding: 10px;
 }
 
 .menu-items {
