@@ -5,7 +5,6 @@
     text-align: center;
     margin-top: 30px;
     font-family: "Dela Gothic One", sans-serif;
-    font-size: 45px;
     margin-left: 20px;
 }
 
@@ -21,10 +20,11 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr); 
     gap: 20px; 
+    margin: 0 auto;
     padding: 10px;
-    margin: 0;
-    max-width: 1200px; 
+    max-width: 40rem; 
     margin-top: 40px;
+
 }
 
 
@@ -51,29 +51,36 @@
 }
 
 #background-modal {
+    /* font-family: "Dela Gothic One", sans-serif; */
     color: #ffffff;
     background-color: #6a3a6b;
 }
 
 #bnt-modal {
     border: none;
-    background-color: #343A40;
-    color: #ffffff;
+    background-color: #ebda4c;
+    color: black;
     font-weight: 500;
 }
 
 #bnt-modal:hover{
-    background-color: #495057;
+    background-color: #d2c03f
+}
+
+#subtitle-modal-one, #subtitle-modal-two {
+    background-color:  #ebda4c;
 }
 
 
 #bnt {
     border: none;
+    background-color:#66bb6a ;
+    color:white;
     font-weight: 700;
 }
 
 #bnt:hover {
-    background-color:  #66b3ff;;
+    background-color: #4caf50;
 }
 
 
