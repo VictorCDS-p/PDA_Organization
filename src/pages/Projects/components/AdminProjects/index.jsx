@@ -55,7 +55,7 @@ const AdminProjects = () => {
             <h2 className="title-projects">Gerenciar Projetos</h2>
             <div className="class-cards">
                 {classes.map((classItem) => (
-                    <Card key={classItem.id} style={{ width: '18rem', margin: '1rem', backgroundColor:'#f0e58b',}}>
+                    <Card key={classItem.id} style={{ width: '18rem', margin: '1rem', backgroundColor:'#f0e58b'}}>
                         <Card.Body>
                             <Card.Title id="class-card-title">{classItem.name}</Card.Title>
                             <Button  id="view-students-button" onClick={() => handleViewStudents(classItem.id)}>Ver Alunos</Button>
