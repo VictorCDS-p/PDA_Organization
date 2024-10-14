@@ -1,14 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
 
-#root {
-    background-color: #ebda4c;
-    /* background-image: url(https://programadoresdoamanha.org/assets/bgWoman.png); */
-    height: 100vh;
-}
 
-.title-projects, h1 {
+.title-projects {
+    text-align: center;
+    margin-top: 30px;
     font-family: "Dela Gothic One", sans-serif;
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 .projects-page {
@@ -23,7 +20,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr); 
     gap: 20px; 
-    /* margin: 0 auto; */
+    margin: 0 auto;
     padding: 10px;
     max-width: 1200px; 
     margin-top: 40px;
