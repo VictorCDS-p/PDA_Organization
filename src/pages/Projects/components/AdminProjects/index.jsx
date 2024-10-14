@@ -3,7 +3,7 @@ import { Card, Button, Table, Modal, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'; 
 import { readAllClasses } from '../../../../services/classes.services'; 
 import { readStudents } from '../../../../services/students.services';
-import { readAdministratorById } from '../../../../services/administrators.services'; // Importar a função
+import { readAdministratorById } from '../../../../services/administrators.services'; 
 import './AdminProjects.css';
 
 const AdminProjects = () => {
@@ -12,7 +12,7 @@ const AdminProjects = () => {
     const [filteredStudents, setFilteredStudents] = useState([]);
     const [selectedClass, setSelectedClass] = useState(null);
     const [showModal, setShowModal] = useState(false);
-    const [loading, setLoading] = useState(true); // Estado de loading
+    const [loading, setLoading] = useState(true); 
     const navigate = useNavigate(); 
 
     useEffect(() => {
