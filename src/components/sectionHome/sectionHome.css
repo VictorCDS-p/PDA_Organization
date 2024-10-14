@@ -7,10 +7,10 @@ html, body {
 }
 
 .section-home {
-  background-image: url(images/imagem.png);
+  /* background-image: url(images/imagem.png);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 50% 70%;
+  background-position: 50% 70%; */
   position: relative;
   width: 100vw;
   height: 100vh; 
