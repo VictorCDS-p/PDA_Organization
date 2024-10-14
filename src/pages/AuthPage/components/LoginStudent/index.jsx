@@ -69,7 +69,7 @@ export default function LoginStudent() {
         </Form.Group>
 
         <Button variant="primary" type="submit">
-          Login
+          Entrar
         </Button>
 
         {error && <p className="text-danger mt-2">{error}</p>}

@@ -38,14 +38,14 @@ export default function AuthPage() {
               onClick={() => setIsLogin(true)}
               className={`me-2 ${isLogin ? 'active' : ''}`}
             >
-              Login
+              Entrar
             </Button>
             <Button
               variant={!isLogin ? "primary" : "outline-primary"}
               onClick={() => setIsLogin(false)}
               className={`${!isLogin ? 'active' : ''}`}
             >
-              Registrar
+              Registrar 
             </Button>
           </div>
 
