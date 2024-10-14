@@ -7,14 +7,10 @@ html, body {
 }
 
 .section-home {
-  background-image: url(images/imagem.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50% 70%;
   position: relative;
   width: 100vw;
   height: 100vh; 
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .image-pda {
@@ -29,7 +25,7 @@ html, body {
   
   .texto-sobreposto {
     position: absolute;
-    top: 50%;
+    top: 20%;
     left: 50%;
     transform: translate(-50%, -50%); 
     color: white; 
@@ -50,7 +46,7 @@ html, body {
 
 
   .image-pda{
-    margin-top: -54px;
+    margin-top: -200px;
     margin-bottom: 50px;
   }
  
