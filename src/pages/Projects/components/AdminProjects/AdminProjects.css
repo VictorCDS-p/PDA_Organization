@@ -5,6 +5,7 @@
     text-align: center;
     margin-top: 30px;
     font-family: "Dela Gothic One", sans-serif;
+    font-size: 45px;
     margin-left: 20px;
 }
 
@@ -20,7 +21,6 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr); 
     gap: 20px; 
-    margin: 0 auto;
     padding: 10px;
     max-width: 1200px; 
     margin-top: 40px;
@@ -57,29 +57,23 @@
 
 #bnt-modal {
     border: none;
-    background-color: #ebda4c;
-    color: black;
+    background-color: #343A40;
+    color: #ffffff;
     font-weight: 500;
 }
 
 #bnt-modal:hover{
-    background-color: #d2c03f
-}
-
-#subtitle-modal-one, #subtitle-modal-two {
-    background-color:  #ebda4c;
+    background-color: #495057;
 }
 
 
 #bnt {
     border: none;
-    background-color:#66bb6a ;
-    color:white;
     font-weight: 700;
 }
 
 #bnt:hover {
-    background-color: #4caf50;
+    background-color:  #66b3ff;;
 }
 
 
